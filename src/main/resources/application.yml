@@ -5,11 +5,7 @@ server:
 spring:
   profiles: local-mssql
   datasource:
-<<<<<<< HEAD
     url: jdbc:mysql://localhost:3306/ad_f33ba6ada231ff9?useSSL=false&user=root&password=root
-=======
-    url: jdbc:mysql://localhost:3306/aviation?useSSL=false&user=root&password=root
->>>>>>> branch 'master' of https://github.com/cglean/performance-component-analysis/
     username: root
     password: root
     dbcp:
@@ -30,8 +26,4 @@ spring:
 spring:
   datasource:
     url:
-<<<<<<< HEAD
       jdbc:mysql://localhost:3306/ad_f33ba6ada231ff9?useSSL=false&user=root&password=root
-=======
-      jdbc:mysql://localhost:3306/aviation?useSSL=false&user=root&password=root
->>>>>>> branch 'master' of https://github.com/cglean/performance-component-analysis/
