@@ -208,7 +208,7 @@ public class AviationServiceImpl implements AviationService {
 //				 System.out.println(componentHisList.get(getRepairindex) + " "+componentHistory);
 				 if((componentHisList.size()-1)!=getRepairindex){
 					 if(componentHisList.get(getRepairindex+1).getStatus().toString().contains("Repair")){
-						 System.out.println("Add repair in removal");
+						 
 						 popup = popup +"<br/>Repair Date : "+ componentHisList.get(getRepairindex+1).getTodate().toString();
 						 popup = popup +"<br/>Repair Station : "+ componentHisList.get(getRepairindex+1).getMaint_stn().toString();
 						 popup = popup +"<br/>Repair Department : "+ componentHisList.get(getRepairindex+1).getDept().toString();

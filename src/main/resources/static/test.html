@@ -35,7 +35,7 @@
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
-  <script src="js/jquery-1.12.4.js"></script>
+  <script src="js/jquery1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script src="Utility.js"></script>
@@ -256,9 +256,9 @@ padding-top: 0.5%;
 			<!-- <center><label for="dateRange" class="label_date" style="color: brown;">Extract Date</label></center> -->
 				<div class="date_range_select ">
 			<label for="fromDate" class="label_date" >Extract Date</label> 
-			<input type="text"	class="form-control" style="margin-bottom: 4px;" id="currentDate" readonly="true" />
+			<input type="text"	class="form-control" style="margin-bottom: 4px; width: 200px;" id="currentDate"  readonly="readonly" />
 			<label	for="dateRange" class="label_date">Date Range</label> 
-							 <input type="text"	class="form-control" style="margin-bottom: 4px;" id="dateRange" readonly="true" />
+							 <input type="text"	class="form-control" style="width: 200px;margin-bottom: 4px;" id="dateRange" readonly="readonly" />
 					<!-- <script type="text/javascript"> -->
 						<!-- $(function() { -->
 
@@ -293,16 +293,16 @@ padding-top: 0.5%;
 				<hr id="analysisByLine">					
 		<div>
 			<div class="checkbox filter-checkbox form-group filter_left2_p2"> 
-				<label id="tab-caption" style="border-bottom: 1px solid;width: 33%;border-bottom-color: black;padding-left: 2%;">Analysis By</label> 
+				<label id="tab-caption" style="border-bottom: 1px solid;width: 90%;border-bottom-color: black;padding-left: 2%;">Analysis By</label> 
 			</div>
 			<table style="margin-left:10px;">
 				<tr>
 					<td><input type="radio" name="filter" id ="bestFirst" onchange="onChangeRadioButton()"/></td>
-					<td><label>Best First</label></td>
+					<td><label style="padding-left: 10px;">Best First</label></td>
 				</tr>
 				<tr>
 					<td><input type="radio" name="filter" id ="worstFirst" onchange="onChangeRadioButton()" checked/></td>
-					<td><label>Worst First</label></td>
+					<td><label style="padding-left: 10px;">Worst First</label></td>
 				</tr>
  			</table>
 		</div>
