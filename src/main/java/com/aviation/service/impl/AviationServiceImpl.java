@@ -203,6 +203,7 @@ public class AviationServiceImpl implements AviationService {
 //				 popup = popup +"<br/>HS_REPAIR_TYPE : "+ componentHistory.getComponent().getDescription().toString();
 //				 popup = popup +"<br/>HS_REPAIR_ODR_NBR : "+ componentHistory.getComponent().getDescription().toString();
 				 
+<<<<<<< HEAD
 				 int getRepairindex = componentHisList.indexOf(componentHistory);
 //				 System.out.println(getRepairindex + " "+componentHisList.size());
 //				 System.out.println(componentHisList.get(getRepairindex) + " "+componentHistory);
@@ -260,6 +261,9 @@ public class AviationServiceImpl implements AviationService {
 //				 }
 //				 }
 				 item.setContent("<div style=\"height: 15px;\"><img class='triangleImage' title=\""+popup+"\" src=\"img/triangle.png\" style=\"width: 15px; position : absolute; height: 15px;\"></div>");
+=======
+				 item.setContent("<div style=\"height: 15px;\"><img class='triangleImage' title=\""+popup+"\" src=\"img/triangle.png\" style=\"width: 15px; height: 15px;\"></div>");
+>>>>>>> branch 'master' of https://github.com/cglean/performance-component-analysis/
 //				 item.setContent("<div style=\"height: 15px;\"><img title=\"<span style='color:blue'>That's what this widget is<br/> test</span>\" src=\"img/triangle.png\" style=\"width: 15px; height: 15px;\"></div>");
 //				 item.setTitle("this is test title");
 			 }else if(componentHistory.getStatus().toString().equalsIgnoreCase("Installed Unit")){
