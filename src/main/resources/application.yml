@@ -21,7 +21,7 @@ spring:
   jpa:
     properties:
       hibernate.dialect:
-        org.hibernate.dialect.PostgreSQLDialect
+        org.hibernate.dialect.MySQL5Dialect
 ---
 spring:
   datasource:
