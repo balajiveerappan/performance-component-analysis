@@ -112,6 +112,7 @@ public class AviationServiceImpl implements AviationService {
 		 String startDate = null;
 		 String endDate = null;
 		 String popup = null;
+		 String removalImage = null;
 		 //boolean flag= true;
 		
 		 for(ComponentHistory componentHistory : componentHisList){
@@ -149,52 +150,76 @@ public class AviationServiceImpl implements AviationService {
 				 popup = popup +"<br/>Removal Department : "+ componentHistory.getDept().toString();
 				 String removalreason = null;
 				 if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("01")){
+					 removalImage = "redTriangle.png";
 					 removalreason = "SCHEDULED REMOVAL / INSTALLATION";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("02")){
+					 removalImage = "yellowTriangle.png";
 					 removalreason = "PREMATURE REMOVAL / INSTALLATION";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("03")){
+					 removalImage = "Others.png";
 					 removalreason = "PART REMOVED FOR CONVENIENCE";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("04")){
+					 removalImage = "Others.png";
 					 removalreason = "CANNED PART TO INST ON ANOTHER A/C";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("05")){
+					 removalImage = "Others.png";
 					 removalreason = "INSTALLATION ONLY   ** NO PART REMOVED **";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("06")){
+					 removalImage = "Others.png";
 					 removalreason = "REMOVAL ONLY    ** NO PART INSTALLED **";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("07")){
+					 removalImage = "Others.png";
 					 removalreason = "SWAP COMPONENT POSITIONS";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("08")){
+					 removalImage = "Others.png";
 					 removalreason = "REPLACEMENT OF CANNIBALIZED PART";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("09")){
+					 removalImage = "Others.png";
 					 removalreason = "EO, AD, FCD, INSP \"P\" PREFACED CPNS ONLY";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("10")){
+					 removalImage = "Others.png";
 					 removalreason = "SUB-ASSY REMOVED WITH ASSY";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("12")){
+					 removalImage = "Others.png";
 					 removalreason = "FOUND AT LINE / HANGAR";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("13")){
+					 removalImage = "Others.png";
 					 removalreason = "FAILED OPS CK & REPLACED WITH SERVICEABLE";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("14")){
+					 removalImage = "Others.png";
 					 removalreason = "FAILED OPS CK & ORIGINAL UNIT REINSTALLED";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("17")){
+					 removalImage = "Others.png";
 					 removalreason = "MISCELLANEOUS";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("18")){
+					 removalImage = "Others.png";
 					 removalreason = "SUB COMP REMOVED FROM AN UNINST MAJOR ASSY";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("23")){
+					 removalImage = "Others.png";
 					 removalreason = "INSTALL BORROWED PART AND REMOVED FEDEX PART";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("24")){
+					 removalImage = "Others.png";
 					 removalreason = "REMOVE BORROWED PART AND INSTALL FEDEX PART";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("25")){
+					 removalImage = "Others.png";
 					 removalreason = "BORROWED PART   ** INSTALLATION ONLY **";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("26")){
+					 removalImage = "Others.png";
 					 removalreason = "BORROWED PART   ** REMOVAL ONLY **";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("27")){
+					 removalImage = "Others.png";
 					 removalreason = "INSTALL ONLY FOR LOG CORRECTION";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("28")){
+					 removalImage = "Others.png";
 					 removalreason = "REMOVAL ONLY FOR LOG CORRECTION";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("29")){
+					 removalImage = "Others.png";
 					 removalreason = "CANNIBALIZED SUB-ASSY FOR ANOTHER A/C OR ASSY";
 				 }else if(componentHistory.getStatus_reason().toString().equalsIgnoreCase("70")){
+					 removalImage = "Others.png";
 					 removalreason = "DAMAGED DURING INSTALLATION";
 				 }else{
+					 removalImage = "Others.png";
 					 removalreason = "NO REASON";
 				 }
 				 popup = popup +"<br/>Removal Reason : "+ removalreason;
@@ -259,7 +284,7 @@ public class AviationServiceImpl implements AviationService {
 //					 System.out.println("Add repair in removal");
 //				 }
 //				 }
-				 item.setContent("<div style=\"height: 15px;\"><img class='triangleImage' title=\""+popup+"\" src=\"img/triangle.png\" style=\"width: 15px; position : absolute; height: 15px;\"></div>");
+				 item.setContent("<div style=\"height: 15px;\"><img class='triangleImage' title=\""+popup+"\" src=\"img/"+removalImage+"\" style=\"width: 15px; position : absolute; height: 15px;\"></div>");
 //				 item.setContent("<div style=\"height: 15px;\"><img title=\"<span style='color:blue'>That's what this widget is<br/> test</span>\" src=\"img/triangle.png\" style=\"width: 15px; height: 15px;\"></div>");
 //				 item.setTitle("this is test title");
 			 }else if(componentHistory.getStatus().toString().equalsIgnoreCase("Installed Unit")){
