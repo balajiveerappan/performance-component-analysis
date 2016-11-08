@@ -965,12 +965,19 @@ function fleetData()
 			 {  
 			 f:for(var i=0; i<filteredData.length; i++){	 
 				 var option = document.createElement("option");
+				 if(filteredData[i].subfleetNo != "null"){ 
 				 for(var z = 0; z < r.length; z++){  
-			            if(r[z]==filteredData[i].fleetNo) continue f;}  
+					
+					 /* change for fleet model*/
+					 
+			            /*if(r[z]==filteredData[i].fleetNo) continue f;}  
 			        r[r.length] = filteredData[i].fleetNo;
-				   option.text = filteredData[i].fleetNo;
+				   option.text = filteredData[i].fleetNo;*/
+			            if(r[z]==filteredData[i].subfleetNo) continue f;}  
+			        r[r.length] = filteredData[i].subfleetNo;
+				   option.text = filteredData[i].subfleetNo;
 				   x.add(option);
-				 
+				 }
 				   }
 			 }else if(searchValue == ""){
 				 document.getElementById("fleetNo").options.length=0;
@@ -980,13 +987,21 @@ function fleetData()
 				  f1:for(var i=0; i<filteredData.length; i++)
 				   {
 					  
-					  if(patt.test(filteredData[i].fleetNo)){
+					  if(patt.test(filteredData[i].subfleetNo)){
 			    	 var option = document.createElement("option");
+			    	 if(filteredData[i].subfleetNo != "null"){ 
 			    	 for(var z = 0; z < r.length; z++){  
-				            if(r[z]==filteredData[i].fleetNo) continue f1;}  
-				        r[r.length] = filteredData[i].fleetNo;
-				   option.text = filteredData[i].fleetNo;
+			    		
+			    		 /* change for fleet model*/
+			    			/*if(r[z]==filteredData[i].fleetNo) continue f1;}  
+			    						        r[r.length] = filteredData[i].fleetNo;
+			    						   option.text = filteredData[i].fleetNo;*/
+			    					    	 
+				            if(r[z]==filteredData[i].subfleetNo) continue f1;}  
+				        r[r.length] = filteredData[i].subfleetNo;
+				   option.text = filteredData[i].subfleetNo;
 				   x.add(option);
+					  }
 					  }
 				   }
 			 }
@@ -1007,6 +1022,7 @@ function subFleetData()
 			 {  
 			 s:for(var i=0; i<filteredData.length; i++){	 
 				 var option = document.createElement("option");
+				 if(filteredData[i].subfleetNo != "null"){ 
 				 for(var z = 0; z < r.length; z++){  
 			            if(r[z]==filteredData[i].subfleetNo) continue s;}  
 			        r[r.length] = filteredData[i].subfleetNo;
@@ -1014,6 +1030,7 @@ function subFleetData()
 				   x.add(option);
 				 
 				   }
+			 }
 			 }else if(searchValue == ""){
 				 document.getElementById("subfleetNo").options.length=0;
 			 }else{
@@ -1024,6 +1041,7 @@ function subFleetData()
 					  
 					  if(patt.test(filteredData[i].subfleetNo)){
 			    	 var option = document.createElement("option");
+			    	 if(filteredData[i].subfleetNo != "null"){ 
 			    	 for(var z = 0; z < r.length; z++){  
 				            if(r[z]==filteredData[i].subfleetNo) continue s1;}  
 				        r[r.length] = filteredData[i].subfleetNo;
@@ -1031,6 +1049,7 @@ function subFleetData()
 				   x.add(option);
 					  }
 				   }
+			 }
 			 }
 }
 
@@ -1046,16 +1065,20 @@ function ataData()
 	
 	 if(searchValue == "*All" || searchValue == "*all")
 		 {  
-		 //////////////////alert("in all")
+		 
 		 a:for(var i=0; i<filteredData.length; i++){	 
 			 var option = document.createElement("option");
-			 for(var z = 0; z < r.length; z++){  
+			 if(filteredData[i].ataSystemNo != "null"){
+				 
+				 for(var z = 0; z < r.length; z++){  
 		            if(r[z]==filteredData[i].ataSystemNo) continue a;}  
 		        r[r.length] = filteredData[i].ataSystemNo;
+		       
 			   option.text = filteredData[i].ataSystemNo;
 			   x.add(option);
 			 
 			   }
+		 }
 		 }else if(searchValue == ""){
 			 document.getElementById("ataSystemNo").options.length=0;
 		 }else{
@@ -1065,11 +1088,17 @@ function ataData()
 			   {
 				  if(patt.test(filteredData[i].ataSystemNo)){
 		    	 var option = document.createElement("option");
+		    	 if(filteredData[i].ataSystemNo != "null"){
+		    		 alert("data in ata"+filteredData[i].ataSystemNo);
+		    	 
 		    	 for(var z = 0; z < r.length; z++){  
 			            if(r[z]==filteredData[i].ataSystemNo) continue a1;}  
 			        r[r.length] = filteredData[i].ataSystemNo;
+			        
+			        
 			   option.text = filteredData[i].ataSystemNo;
 			   x.add(option);
+			        }
 				  }
 			   }
 		 }
@@ -1088,12 +1117,14 @@ function tailData(){
 		 {  
 		 t:for(var i=0; i<filteredData.length; i++){	 
 			 var option = document.createElement("option");
+			 if(filteredData[i].tailNo != "null"){ 
 			 for(var z = 0; z < r.length; z++){  
 		            if(r[z]==filteredData[i].tailNo) continue t;}  
 		        r[r.length] = filteredData[i].tailNo;
 			   option.text = filteredData[i].tailNo;
 			   x.add(option);
 			   }
+		 }
 		 }else if(searchValue == ""){
 			 document.getElementById("tailNo").options.length=0;
 		 }else{
@@ -1103,11 +1134,13 @@ function tailData(){
 			   { 
 				  if(patt.test(filteredData[i].tailNo)){
 		    	 var option = document.createElement("option");
+		    	 if(filteredData[i].tailNo != "null"){ 
 		    	 for(var z = 0; z < r.length; z++){  
 			            if(r[z]==filteredData[i].tailNo) continue t1;}  
 			        r[r.length] = filteredData[i].tailNo;
 		    	 option.text = filteredData[i].tailNo;
 			   x.add(option);
+				  }
 				  }
 			   }
 		 }
@@ -1126,12 +1159,14 @@ function cpnData()
 		 {  
 		 c:for(var i=0; i<filteredData.length; i++){	 
 			 var option = document.createElement("option");
+			 if(filteredData[i].companyPartNo != "null"){ 
 			 for(var z = 0; z < r.length; z++){  
 		            if(r[z]==filteredData[i].companyPartNo) continue c;}  
 		        r[r.length] = filteredData[i].companyPartNo;
 			   option.text = filteredData[i].companyPartNo;
 			   x.add(option);
 			   }
+		 }
 		 }else if(searchValue == ""){
 			 document.getElementById("companyPartNo").options.length=0;
 		 }else{
@@ -1141,12 +1176,14 @@ function cpnData()
 			   {
 				  if(patt.test(filteredData[i].companyPartNo)){
 		    	 var option = document.createElement("option");
+		    	 if(filteredData[i].companyPartNo != "null"){ 
 		    	 for(var z = 0; z < r.length; z++){  
 			            if(r[z]==filteredData[i].companyPartNo) continue c1;}  
 			        r[r.length] = filteredData[i].companyPartNo;
 			   option.text = filteredData[i].companyPartNo;
 			   x.add(option);
 				  }
+			   }
 			   }
 		 }
 }
@@ -1162,12 +1199,14 @@ function mfgData(){
 		 {  
 		 m:for(var i=0; i<filteredData.length; i++){	 
 			 var option = document.createElement("option");
+			 if(filteredData[i].mfgPartNo != "null"){ 
 			 for(var z = 0; z < r.length; z++){  
 		            if(r[z]==filteredData[i].mfgPartNo) continue m;}  
 		        r[r.length] = filteredData[i].mfgPartNo;
 			   option.text = filteredData[i].mfgPartNo;
 			   x.add(option);
 			   }
+		 }
 		 }else if(searchValue == ""){
 			 document.getElementById("mfgPartNo").options.length=0;
 		 }else{
@@ -1176,6 +1215,7 @@ function mfgData(){
 			  m1:for(var i=0; i<filteredData.length; i++){
 				  if(patt.test(filteredData[i].mfgPartNo)){
 		    	 var option = document.createElement("option");
+		    	 if(filteredData[i].mfgPartNo != "null"){ 
 		    	 for(var z = 0; z < r.length; z++){  
 			            if(r[z]==filteredData[i].mfgPartNo) continue m1;}  
 			        r[r.length] = filteredData[i].mfgPartNo;
@@ -1183,6 +1223,7 @@ function mfgData(){
 			   x.add(option);
 				  }
 			   }
+			  }
 		 }
 }
 
@@ -1502,10 +1543,12 @@ function populateSavedFleets()
 	
 	////////////////alert("Hi I amin fleet populateFleets")
 	x=document.getElementById("fleetValue");
-	////////////////alert('Fleets length'+fleets.length)
-	////////////////alert('Fleetdata  length'+filteredData.length)
-	////////////////alert('tempdata  length'+fleets.length)
-		var r=new Array();
+	//////////////////alert('Fleets length'+fleets.length)
+	//////////////////alert('Fleetdata  length'+filteredData.length)
+	//////////////////alert('tempdata  length'+fleets.length)
+	
+	/* change for fleet model*/
+	/*	var r=new Array();
   
 			f:for(var i=0; i<filteredData.length; i++){	 
 				 var option = document.createElement("option");
@@ -1523,8 +1566,25 @@ function populateSavedFleets()
 	
 			}
 	
-	
-	
+	*/
+	var r=new Array();
+	  
+	s:for(var i=0; i<filteredData.length; i++){	 
+		 var option = document.createElement("option");
+		 for(var j = 0; j < fleets.length-1; j++){  
+		 if(filteredData[i].subfleetNo == fleets[j]){
+			 for(var z = 0; z < r.length; z++){  
+		            if(r[z]==filteredData[i].subfleetNo) continue s;}  
+		        r[r.length] = filteredData[i].subfleetNo;
+			 
+			  option.text = filteredData[i].subfleetNo;
+			   x.add(option);
+		 }
+		
+	 }
+
+	}
+
 	
 	
 }
@@ -1939,7 +1999,7 @@ function getFilterValue(){
  		
  		if(fleetString!=null){
  			fleets =fleetString.split(',');
- 			loadvalue.push(fleets);
+ 			loadvalue.push("fleets");
  		}
  		if(subfleetString!=null){
  			subfleets =subfleetString.split(',');

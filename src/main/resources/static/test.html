@@ -225,8 +225,17 @@ padding-top: 0.5%;
 		<div class="btndiv">
 		<!-- <button class="filebtn list-cust-btn">File</button> -->
 		<!-- <button class="statbtn list-cust-btn">Statistics</button> -->
-		<input type="button" onclick="printDiv('visualization')" value="File" class="filebtn list-clear-btn">
+		  <div class="dropdown">
+<!-- 		<input type="button" onclick="printDiv('printDiv')" value="File" class="filebtn list-clear-btn"> -->
+		    <input class="filebtn list-clear-btn" type="button" value="File" data-toggle="dropdown">
+		<ul class="dropdown-menu">
+      <li><a href="#">Save As PDF</a></li>
+      <li><a href="#">Print</a></li>
+      
+    </ul>
+		
 		<input type="button" value="Statistics" class="statbtn list-clear-btn">
+		</div>
 		</div>
 		
 		<label class="right_label">Component Removal History</label></div></div>
@@ -432,10 +441,10 @@ padding-top: 0.5%;
 
 
 <br/><!-- <br/><br/><br/><br/><br/><br/><br/><br/> -->
-
+<div id="printDiv">
 		<div id="visualization">
 		</div>
-	
+	</div>
 	
 	<div class="col-sm-12" style="margin-top: 12px;">
 	

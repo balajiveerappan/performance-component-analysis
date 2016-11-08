@@ -260,7 +260,7 @@ button#displayReport {
 				<div class="col-sm-1">
 				</div>
 					<div class="col-sm-10">
-						 <center><h5><label for="fleetNo">Fleet Number</label><h5></center>
+						 <center><h5><label for="fleetNo">Fleet Model</label><h5></center>
 					</div>
 					
 				</div>
@@ -268,7 +268,7 @@ button#displayReport {
 				<div class="col-sm-1">
 				</div>
 					<div class="col-sm-4">
-				 		<input placeholder="Search..." id="fleet" type="text" class="search" onchange="searchData('fleetNo')" readonly /> 
+				 		<input placeholder="Search..." id="fleet" type="text" class="search" onchange="searchData('fleetNo')" /> 
 				 		<form>
 							<select name="fleet" class="sort_option sort_fleet" style="height: 150px;" id="fleetNo"
 							multiple  >
@@ -276,17 +276,17 @@ button#displayReport {
 						</form>	
 					</div>
 					<div class="col-sm-1 midButton">
-							<input type="button" value=">>" class="list-clear-btn" id="fleetPush" onclick="PushToSelectedList('fleetNo','fleetValue');" disabled ><br><br>
-						    <input type="button" value="<<" class="list-clear-btn" id="fleetClear" onclick="ClearSelectedList('fleetValue','fleetNo');" disabled >
+							<input type="button" value=">>" class="list-clear-btn" id="fleetPush" onclick="PushToSelectedList('fleetNo','fleetValue');"  ><br><br>
+						    <input type="button" value="<<" class="list-clear-btn" id="fleetClear" onclick="ClearSelectedList('fleetValue','fleetNo');"  >
 						
 			        </div>
 					<div class="col-sm-4">
-							<input placeholder="Search..." id="fleet1" type="text" class="search" readonly />
+							<input placeholder="Search..." id="fleet1" type="text" class="search"  />
 							<form>
 						    <select name="fleet" class="sort_option sort_fleet" style="height: 150px;" id="fleetValue" multiple>
 						   </select><br><br>
 						   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						   <input type="button" value="Submit" class="list-clear-btn" id="fleetNoSubmit" onclick="getFleets()" disabled >
+						   <input type="button" value="Submit" class="list-clear-btn" id="fleetNoSubmit" onclick="getFleets()"  >
 						   </form>
 					</div>
 				</div>
