@@ -71,6 +71,7 @@ table.columns {
 	letter-spacing: 4px;
 	font-weight: 600;
 	position: static;
+	padding: 0
 }
 
 .btndiv {
@@ -152,59 +153,58 @@ body, html {
 <body onload="dateRange();" >
 
 	<!-- Top Logo Header -->
-	<nav id="home" class="navbar navbar-default navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.html">Aviation</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav navbar-right">
-
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Menu
-					</a>
-						<ul class="dropdown-menu">
-							<li><a href="afterLogin.html">Home</a></li>
-							<li><a href="Unit_Filter.html">Filter Editor</a></li>
-
-						</ul></li>
-
+	<nav id="home"  class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
 					
-					 <li><a href="index.html" id="logout">LOGOUT</a></li>
-				</ul>
-			</div>
+					<img alt="client" width="11%" src="img/Cloud Image.png" style="margin-left: -652px ">
+					<img alt="client" src="img/cg.jpg" width="25%" style="margin-left: -351px; ">
+			
+			<!-- <a class="navbar-brand" href="index.html">Aviation</a>-->
+			<label class="navbar-brand" style="margin-left: 473px;margin-bottom: -17px; padding-top: 1.25rem;">Aircraft Component Analysis</label>
+			<label></label>
 		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+<!-- 				<li><a href="afterLogin.html">HOME</a></li> -->
+	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">File                                                             </a>
+<ul class="dropdown-menu">
+      <li><a href="#">Save As PDF</a></li>
+      <li><a href="#">Print</a></li>
+      
+    </ul></li>
+				                        
+<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu                                                         </a>
+<ul class="dropdown-menu">
+
+<li><a href="afterLogin.html">Home</a></li>
+							<li><a href="Unit_Filter.html">Filter Editor</a></li>
+</ul></li>
+				
+				<li><a href="index.html" id="logout">LOGOUT</a></li>
+			</ul>
+		</div>
+	</div>
 	</nav>
 	<!-- End of Top Logo Header -->
+
 
 
 	<form action="">
 		<div class="main_content">
 
-			<center>
 
-				<!-- div for button alignment -->
-				<div class="btndiv">
-					<!-- <button class="filebtn list-cust-btn">File</button> -->
-					<!-- <button class="statbtn list-cust-btn">Statistics</button> -->
-					<input type="button" value="File" class="filebtn list-clear-btn">
-					<input type="button" value="Statistics"
-						class="statbtn list-clear-btn">
-				</div>
-
-				<label class="right_label">Aircraft Component Analysis</label>
-			</center>
 </div>
 			<div class="graph_body main_right">
 				<!--//////////////////////////// Chart Section ///////////////////////////////////////// -->
 				<table style="background-color: white;" class="columns">
 					<tr>
-						<td align="center" colspan="2"><img width="80%" align="middle" style="height: 400px" alt="Predictive Analysis" src="img/predictive widget.JPG"></td>
+						<td align="center" colspan="2"><img width="60%" align="middle" style="height: 275px" alt="Predictive Analysis" src="img/predictive widget.JPG"></td>
 <!-- 						<td><img width="80%" alt="Predictive Analysis" src="img/predictive analysis.PNG"></td> -->
 					</tr>
 					<tr>

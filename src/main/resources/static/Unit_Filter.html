@@ -175,34 +175,42 @@ button#displayReport {
 
 </head>
 <body onload="loadRecentFilter()">
-<!-- Top Logo Header -->
-       <nav id="home"  class="navbar navbar-default navbar-fixed-top">
-       <div class="container-fluid">
-              <div class="navbar-header">
-                     <button type="button" class="navbar-toggle" data-toggle="collapse"
-                           data-target="#myNavbar">
-                           <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-                                  class="icon-bar"></span>
-                     </button>
-                     <a class="navbar-brand" href="index.html">Aviation</a>
-              </div>
-              <div class="collapse navbar-collapse" id="myNavbar">
-                     <ul class="nav navbar-nav navbar-right">
-                        
+	<!-- Top Logo Header -->
+	<nav id="home"  class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+					
+					<img alt="client" width="11%" src="img/Cloud Image.png" style="margin-left: -618px ">
+					<img alt="client" src="img/cg.jpg" width="25%" style="margin-left: -341px; ">
+			
+			<!-- <a class="navbar-brand" href="index.html">Aviation</a>-->
+			<label class="navbar-brand" style="margin-left: 508px;margin-bottom: -17px;padding-top: 20px;;">Unit Based Filter Editor</label>
+			<label></label>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				
+	
+				                        
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu <span class="caret"></span>                                                               </a>
 <ul class="dropdown-menu">
-<li><a href="afterLogin.html">Home</a></li>
+<li><a href="afterLogin.html">HOME</a></li>
 
+<!-- <li><a href="Unit_Filter.html">Filter Editor</a></li> -->
 <li><a href="Splash_Screen.html">Component Analysis</a></li>
 </ul></li>
-                           
-                          
-                            <li><a href="index.html" id="logout">LOGOUT</a></li>
-                     </ul>
-              </div>
-       </div>
-       </nav>
-       <!-- End of Top Logo Header -->
+				
+				<li><a href="index.html" id="logout">LOGOUT</a></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+	<!-- End of Top Logo Header -->
 
 		
 
@@ -221,7 +229,7 @@ button#displayReport {
   <input type="text" class="form-control" id="filterName" placeholder="Enter filter name">
       <hr id="seperator_line">
 	  
-	        <h5><label for="fromDate">From::</label>
+	        <h5><label for="fromDate">From:</label>
 	  
   <input type="date" class="form-control" id="fromDate" ></h5>
   	        
@@ -249,9 +257,7 @@ button#displayReport {
     </div>	
 
   <div class="row content_main">
-  <div class="right_header">
-		<center><label class="right_label">Unit Based Filter Editor</label></center>
-		</div>
+  
     <div class="col-sm-9 sidenav_main">
     <div>
 		<div class="row">
@@ -528,7 +534,7 @@ button#displayReport {
 	<div class="finalButton">
 							<button type="button" class="btn btn-primary style_btn"
 								style="border-radius: 15px; margin-left: 10px;"
-								id="displayReport" onclick=" getFilteredData(); window.open('test.html','_self');">Display<br>
+								id="displayReport" onclick="getFilteredData(); ">Display<br>
 								Historical Analysis</button>
 				</div>
 	</div>

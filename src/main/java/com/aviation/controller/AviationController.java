@@ -333,7 +333,7 @@ System.out.println("componentsIds"+componentsIds.size());
     
     
 	@RequestMapping(value = "/postComponentIds/{components}/{fromDate}/{toDate}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void getComponentsIds(@RequestBody List<Component> components,@PathVariable final String fromDate, @PathVariable final String toDate) throws ParseException {
+	public int getComponentsIds(@RequestBody List<Component> components,@PathVariable final String fromDate, @PathVariable final String toDate) throws ParseException {
 
 		System.out.println("in post");
 		
@@ -364,11 +364,41 @@ System.out.println("componentsIds"+componentsIds.size());
 		
       removalFromDate=startDate.replaceAll("-", "/");
       removalToDate=endDate.replaceAll("-", "/");
-      
+      return 1;
 	}
 
     
-    
+	
+	
+	
+	
+	
+	
+	/*
+	  
+		@RequestMapping(value = "/postComponentIds", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+		public int getComponentsIds(@RequestBody List<Component> components@RequestBody Long[] comp) throws ParseException {
+
+			System.out.println("in post");
+			
+			componentsIds = new ArrayList<Long>();
+			//componentsIds=components;
+			for (Component component : components) {
+				componentsIds.add(component.getComponentID());
+				//system.out.println(component.getComponentID());
+			}
+			System.out.println("in component id"+componentsIds.size());	
+			System.out.println("in component id"+componentsIds);	
+			
+			System.out.println("in component id"+comp.toString());	
+			System.out.println("in component id"+comp.length);
+			
+      return 1;
+	      
+		}
+
+	    
+    */
     
     
 	

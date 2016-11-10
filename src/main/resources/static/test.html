@@ -131,7 +131,7 @@ padding-top: 0.5%;
 	height:0px; 
 	border-left:20px solid transparent;
 	border-right:20px solid transparent;
-	border-top:20px solid #8BC34A;
+	border-top:20px solid red;
 	    margin-left: 7px;
 }
 
@@ -197,11 +197,23 @@ padding-top: 0.5%;
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.html">Aviation</a>
+					
+					<img alt="client" width="11%" src="img/Cloud Image.png" style="margin-left: -584px ">
+					<img alt="client" src="img/cg.jpg" width="25%" style="margin-left: -333px; ">
+			
+			<!-- <a class="navbar-brand" href="index.html">Aviation</a>-->
+			<label class="navbar-brand" style="margin-left: 420px;margin-bottom: -17px;">Component Removal History</label>
+			<label></label>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="afterLogin.html">HOME</a></li>
+				<li><a href="afterLogin.html">Home</a></li>
+	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">File <span class="caret"></span>                                                               </a>
+<ul class="dropdown-menu">
+      <li><a href="#">Save As PDF</a></li>
+      <li><a href="#">Print</a></li>
+      
+    </ul></li>
 				                        
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu <span class="caret"></span>                                                               </a>
 <ul class="dropdown-menu">
@@ -210,29 +222,40 @@ padding-top: 0.5%;
 <li><a href="Splash_Screen.html">Component Analysis</a></li>
 </ul></li>
 				
-				<li><a href="index.html" id="logout">LOGOUT</a></li>
+				<li><a href="index.html" id="logout">Logout</a></li>
 			</ul>
 		</div>
 	</div>
 	</nav>
 	<!-- End of Top Logo Header -->
 
+
+
 <form action="">
 <br/><br/><br/>
 <div class="main_content bgclass">
 <div style='text-align:center'>
 		<!-- div for button alignment -->
-		<div class="btndiv">
+		<!-- <div class="btndiv">-->
 		<!-- <button class="filebtn list-cust-btn">File</button> -->
 		<!-- <button class="statbtn list-cust-btn">Statistics</button> -->
-		<input type="button" onclick="printDiv('visualization')" value="File" class="filebtn list-clear-btn">
+		  <div class="dropdown">
+<!-- 		<input type="button" onclick="printDiv('printDiv')" value="File" class="filebtn list-clear-btn"> -->
+		    <!-- <input class="filebtn list-clear-btn" type="button" value="File" data-toggle="dropdown">
+		<ul class="dropdown-menu">
+      <li><a href="#">Save As PDF</a></li>
+      <li><a href="#">Print</a></li>
+      
+    </ul>
+		
 		<input type="button" value="Statistics" class="statbtn list-clear-btn">
 		</div>
+		</div>-->
 		
-		<label class="right_label">Component Removal History</label></div></div>
+		<!-- <label class="right_label">Component Removal History</label>--></div></div>
 	<div class="main_left">
 		
-		<div class="left_p1">
+		<div class="left_p1" style="margin-top:-7px;">
 					<!-- <div class="checkbox filter-checkbox form-group filter_left2_p2"> 
 				 <label id="tab-caption" style="border-bottom: 1px solid;width: 100%;border-bottom-color: black;">Sort</label> 
 				<input type="string" style="width: 70px;" id="sort" value="Sort">
@@ -323,12 +346,11 @@ padding-top: 0.5%;
 				<table style="margin-left:10px;">
 					<tr>
 						<td><label>Installed</label></td>
-						<td><div class="button" style="background-color:Blue;"/></td>
+						<td style="padding-left: 10px;"><div class="button" style="background-color:Blue;"/></td>
 					</tr>
 					<tr>
 						<td><label>Removed</label></td>
-					
-						<td><div class="button" style="background-color:white;"></td>
+						<td style="padding-left: 10px;"><div class="button" style="background-color:white;"></td>
 					</tr>
 		<!-- 			<tr>
 						<td><label>Still Installed Box</label></td>
@@ -350,27 +372,28 @@ padding-top: 0.5%;
 <!-- <label id="tab-caption" style="border-bottom: 1px solid;width: 100%;border-bottom-color: black;">Removal Period Bar</label>  -->
 				<table>
 					<tr>
-						<td style="padding-left: 8px;padding-top: 3px;"><input type="checkbox" name="remperbar"  id="remperbar" checked="true"/></td>
+<!-- 						<td style="padding-left: 8px;padding-top: 3px;"><input type="checkbox" name="remperbar"  id="remperbar" checked="true"/></td> -->
 					
 						<td><label id="tab-caption" style="border-bottom: 1px solid;width: 100%;border-bottom-color: black; padding-left: 4px !important;padding-bottom: 0px !important;">Removal Event</label></td>
 						
-						<td style="padding-left: 16px;"><p class="glyphicon glyphicon-triangle-bottom" style="font-size: 30px;color: red;"></p></td>
+<!-- 						<td style="padding-left: 16px;"><p class="glyphicon glyphicon-triangle-bottom" style="font-size: 30px;color: red;"></p></td> -->
 					</tr>
 				 </table>
 			</div>
 			<table style="margin-left:10px;">
 				<tr>
+					<td><input type="checkbox" name="Sch"  id="Sch" checked="true"/></td>
 					<td><label>Scheduled</label></td>
 					<td><div class="triangle" ></div></td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name="unSch"  id="unSch" checked="true"/></td>
 					<td><label>Unscheduled</label></td>
-					
 					<td style="padding-left:6px"><div class="utriangle" ></div></td>
 				</tr>
 				<tr>
+					<td><input type="checkbox" name="oCircle"  id="oCircle" checked="true"/></td>
 					<td><label>Others</label></td>
-					
 					<td style="padding-left:6px"><div class="bcircle button" ></div></td>
 				</tr>
 				</table>
@@ -566,7 +589,7 @@ var temp=0;
 	 
   paginationStatus();
   
-  $('input[name="instperbar"],input[name="remperbar"]').unbind().click(function(){
+  $('input[name="Sch"],input[name="unSch"],input[name="oCircle"]').unbind().click(function(){
 		if($(this).attr('checked')){
 		//console.log('block1');
 		$(this).attr('checked',false);
@@ -579,17 +602,25 @@ var temp=0;
 });
  
  
-$('input[name="instperbar"]').click(function(){
-	var sample=document.getElementById("instperbar");
-	////alert("checked status"+sample);
-	filterlogic();
+
+
+$('input[name="Sch"]').click(function(){
 		
-		////alert("checked status"+sample);
+    	////alert("checked status"+document.getElementById("remperbar"));
+		filterlogic();
 		
-console.log('filter applied');
+       console.log('Sch applied');
 })
 
-$('input[name="remperbar"]').click(function(){
+$('input[name="unSch"]').click(function(){
+		
+    	////alert("checked status"+document.getElementById("remperbar"));
+		filterlogic();
+		
+       console.log('filter applied');
+})
+
+$('input[name="oCircle"]').click(function(){
 		
     	////alert("checked status"+document.getElementById("remperbar"));
 		filterlogic();
@@ -600,29 +631,38 @@ $('input[name="remperbar"]').click(function(){
 	<!-- ***************Start of Filter logic for chart selection***************	 -->
 	function filterlogic(){
 
-		 if($('input[name="instperbar"]').attr('checked') == 'checked' && ($('input[name="remperbar"]').attr('checked') == false || $('input[name="remperbar"]').attr('checked') == undefined)){
-			 $('.triangleImage').css('display','none');
-			$('.vis-item-overflow,.vis-range,.vis-item.vis-background.positive').css('display','block');
-				console.log('show bars');
-			} 
-		  if(($('input[name="instperbar"]').attr('checked')== false || $('input[name="instperbar"]').attr('checked') == undefined) && $('input[name="remperbar"]').attr('checked')== 'checked'){
+		
+		if($('input[name="Sch"]').attr('checked')== 'checked'){	
+				
+			 $('.redTriangle').css('display','block');
+							console.log('redTriangle.png all');
+		}
+		if($('input[name="Sch"]').attr('checked')== false || $('input[name="Sch"]').attr('checked') == undefined ){	
 			
-				$('.vis-item-overflow,.vis-range,.vis-item.vis-background.positive').css('display','none');
-				//$('.vis-item.vis-background.grph_bcircle,.vis-item.vis-background.grph_ycircle,.vis-item.vis-background.negative,.triangleImage').css('display','block');
-				 $('.triangleImage').css('display','block');
-				console.log('show triangle');
-			}
-		 if($('input[name="instperbar"]').attr('checked')== 'checked' && $('input[name="remperbar"]').attr('checked')=='checked'){	
-			 //$('.vis-item-overflow,.vis-range,.vis-item.vis-background.positive').css('display','block');
-			$('.vis-item-overflow,.vis-range,.vis-item.vis-background.positive').css('display','block');	
-			 $('.triangleImage').css('display','block');
-							console.log('show all');
+			 $('.redTriangle').css('display','none');
+							console.log('redTriangle.png none');
+		}
+		if($('input[name="unSch"]').attr('checked')== 'checked'){	
+			
+			 $('.yellowTriangle').css('display','block');
+							console.log('yellowTriangle.png all');
+		}
+		if($('input[name="unSch"]').attr('checked')== false || $('input[name="unSch"]').attr('checked') == undefined ){	
+			
+			 $('.yellowTriangle').css('display','none');
+							console.log('yellowTriangle.png none');
+		}
+		if($('input[name="oCircle"]').attr('checked')== 'checked'){	
+			
+			 $('.Others').css('display','block');
+							console.log('redTriangle.png all');
+		}
+		if($('input[name="oCircle"]').attr('checked')== false || $('input[name="oCircle"]').attr('checked') == undefined ){	
+			
+			 $('.Others').css('display','none');
+							console.log('redTriangle.png none');
 		}
 		
-		if(($('input[name="instperbar"]').attr('checked')== false || $('input[name="instperbar"]').attr('checked') == undefined) && ($('input[name="remperbar"]').attr('checked') == false || $('input[name="remperbar"]').attr('checked') == undefined)){
-				$('.vis-item-overflow,.vis-range,.vis-item.vis-background.grph_bcircle,.vis-item.vis-background.negative,.vis-item.vis-background.positive,.vis-item.vis-background.grph_ycircle,.triangleImage').css('display','none');
-				console.log('show none');
-		}  
 	}
 	<!-- ***************End of Filter logic for chart selection***************	 -->
   

@@ -12,18 +12,20 @@ spring:
       max-active: 5
     tomcat:
       max-active: 5
-
+ 
 ---
 server:
   context-path: /
-  max-http-post-size: -1
-    
+  max-http-header-size: 2012333
 ---
 spring:
   jpa:
     properties:
       hibernate.dialect:
         org.hibernate.dialect.MySQL5Dialect
+  http:
+    multipart:
+      max-request-size: 10Mb
 ---
 spring:
   datasource:
