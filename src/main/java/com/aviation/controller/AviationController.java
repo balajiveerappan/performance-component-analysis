@@ -94,29 +94,16 @@ public class AviationController {
 	
 	
 	
-	@RequestMapping(value = "/removalReport/{step}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/removalReport", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ComponentReport removalReport(@PathVariable final int step/*@RequestBody   List<Long> componentIds*/) {
+	public ComponentReport removalReport() {
 		// TODOD:: Remove Hard coding 
 	//	long[] components = {2312,2302,1642};
 		//system.out.println("step value"+step);
-		long [] component= new long[componentsIds.size()];
-		int i;
-		
-		int length=componentsIds.size();
-
-		
-	
-		
-		//system.out.println("id length"+componentsIds.size());
-		for(i=0; i<componentsIds.size(); i++)
-		{
-			component[i]=componentsIds.get(i);
-			
-			//system.out.println("component[i]="+component[i]);
-		}
-		//system.out.println("component id length actuall"+componentsIds.size());
-
+		System.out.println("componentsIds");
+		System.out.println("componentsIds"+componentsIds.size());
+System.out.println("componentsIds"+componentsIds.toString());
+System.out.println("componentsIds"+componentsIds.size());
 		
 		List<Long> compos1=componentsIds;
 
@@ -346,18 +333,17 @@ public class AviationController {
     
     
 	@RequestMapping(value = "/postComponentIds/{components}/{fromDate}/{toDate}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void getComponentsIds(@RequestBody final List<Component> components,@PathVariable final String fromDate, @PathVariable final String toDate) throws ParseException {
+	public void getComponentsIds(@RequestBody List<Component> components,@PathVariable final String fromDate, @PathVariable final String toDate) throws ParseException {
+
+		System.out.println("in post");
 		
-//		/componentIds
-		//system.out.println("from date "+fromDate+" to date "+toDate);
-		//system.out.println("Hi I am in component  dfcd ids");
 		componentsIds = new ArrayList<Long>();
-		//system.out.println("in component"+components.toString());
+		//componentsIds=components;
 		for (Component component : components) {
 			componentsIds.add(component.getComponentID());
 			//system.out.println(component.getComponentID());
 		}
-		////system.out.println(components.size());	
+		System.out.println("in component id"+componentsIds.size());	
 		
 		
 		
@@ -387,19 +373,20 @@ public class AviationController {
     
 	
 	@RequestMapping(value = "/paginationStatus", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<String> paginationStatus(/*@RequestBody   List<Long> componentIds*/) {
+	public List<String> paginationStatus(/*@PathVariable List<Component> componentIds*/) {
 		// TODOD:: Remove Hard coding 
 
+		
 		List<String> status =  new ArrayList<String>();
-	
 		 
 		
 		
-		//system.out.println("in status"+status);
+		System.out.println("in status"+status);
 		status.add(removalFromDate);
 		status.add(removalToDate);
 		status.add(optionEnd);
 		status.add(optionStart);
+		System.out.println("in status"+status);
 		return status;
 	}
 	
@@ -411,7 +398,21 @@ public class AviationController {
     
     
     
-    
+	@RequestMapping(value = "/testUnitFilter/{fromDate}/{toDate}/{componentIds}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void test(@PathVariable final String fromDate, @PathVariable final String toDate,@PathVariable final List<String> componentIds) {
+		// TODOD:: Remove Hard coding 
+		
+		/*componentsIds = new ArrayList<Long>();
+		for (Component component : components) {
+			componentsIds.add(component.getComponentID());
+			//system.out.println(component.getComponentID());
+		}*/
+		System.out.println("components"+fromDate+" "+toDate);
+		System.out.println("components"+componentIds.size());
+		System.out.println("components"+componentIds.toString());
+		//System.out.println("in component id"+componentsIds.size());	
+		
+	}
     
 	
 }

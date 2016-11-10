@@ -12,10 +12,12 @@ spring:
       max-active: 5
     tomcat:
       max-active: 5
- 
+
 ---
 server:
   context-path: /
+  max-http-post-size: -1
+    
 ---
 spring:
   jpa:

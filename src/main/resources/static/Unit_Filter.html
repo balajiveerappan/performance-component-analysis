@@ -268,10 +268,10 @@ button#displayReport {
 				<div class="col-sm-1">
 				</div>
 					<div class="col-sm-4">
-				 		<input placeholder="Search..." id="fleet" type="text" class="search" onchange="searchData('fleetNo')" /> 
+				 		<input placeholder="Search..." id="fleet" type="text" class="search" onchange="searchData('fleetNo')"  /> 
 				 		<form>
-							<select name="fleet" class="sort_option sort_fleet" style="height: 150px;" id="fleetNo"
-							multiple  >
+							<select name="fleet" class="sort_option sort_fleet" style="height: 150px;" id="fleetNo" multiple>
+							  
 							</select>
 						</form>	
 					</div>
@@ -528,7 +528,7 @@ button#displayReport {
 	<div class="finalButton">
 							<button type="button" class="btn btn-primary style_btn"
 								style="border-radius: 15px; margin-left: 10px;"
-								id="displayReport" onclick="window.open('test.html','_self'); getFilteredData()">Display<br>
+								id="displayReport" onclick=" getFilteredData(); window.open('test.html','_self');">Display<br>
 								Historical Analysis</button>
 				</div>
 	</div>

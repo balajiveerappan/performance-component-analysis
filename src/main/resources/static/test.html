@@ -131,7 +131,7 @@ padding-top: 0.5%;
 	height:0px; 
 	border-left:20px solid transparent;
 	border-right:20px solid transparent;
-	border-top:20px solid red;
+	border-top:20px solid #8BC34A;
 	    margin-left: 7px;
 }
 
@@ -186,7 +186,7 @@ padding-top: 0.5%;
     <!-- <link href="../../Code/vis/dist/vis.css" rel="stylesheet" type="text/css" /> -->
     <!-- <script src="../vis/examples/googleAnalytics.js"></script> -->
 </head>
-<body onload="removal('0')">
+<body onload="removal()">
 
 	<!-- Top Logo Header -->
 	<nav id="home"  class="navbar navbar-default navbar-fixed-top">
@@ -225,17 +225,8 @@ padding-top: 0.5%;
 		<div class="btndiv">
 		<!-- <button class="filebtn list-cust-btn">File</button> -->
 		<!-- <button class="statbtn list-cust-btn">Statistics</button> -->
-		  <div class="dropdown">
-<!-- 		<input type="button" onclick="printDiv('printDiv')" value="File" class="filebtn list-clear-btn"> -->
-		    <input class="filebtn list-clear-btn" type="button" value="File" data-toggle="dropdown">
-		<ul class="dropdown-menu">
-      <li><a href="#">Save As PDF</a></li>
-      <li><a href="#">Print</a></li>
-      
-    </ul>
-		
+		<input type="button" onclick="printDiv('visualization')" value="File" class="filebtn list-clear-btn">
 		<input type="button" value="Statistics" class="statbtn list-clear-btn">
-		</div>
 		</div>
 		
 		<label class="right_label">Component Removal History</label></div></div>
@@ -363,7 +354,7 @@ padding-top: 0.5%;
 					
 						<td><label id="tab-caption" style="border-bottom: 1px solid;width: 100%;border-bottom-color: black; padding-left: 4px !important;padding-bottom: 0px !important;">Removal Event</label></td>
 						
-<!-- 						<td style="padding-left: 16px;"><p class="glyphicon glyphicon-triangle-bottom" style="font-size: 30px;color: red;"></p></td> -->
+						<td style="padding-left: 16px;"><p class="glyphicon glyphicon-triangle-bottom" style="font-size: 30px;color: red;"></p></td>
 					</tr>
 				 </table>
 			</div>
@@ -441,10 +432,10 @@ padding-top: 0.5%;
 
 
 <br/><!-- <br/><br/><br/><br/><br/><br/><br/><br/> -->
-<div id="printDiv">
+
 		<div id="visualization">
 		</div>
-	</div>
+	
 	
 	<div class="col-sm-12" style="margin-top: 12px;">
 	
@@ -498,10 +489,10 @@ function printDiv(divName) {
 }
 var report={};
 
-var removal=function(step1){
-	////alert("report call")
+var removal=function(){
+	//////alert("report call")
 	$.ajax({
-		url : "/removalReport/"+step1,
+		url : "/removalReport",
 		async: false,
         cache: false,
 		success : function(data) { 
@@ -534,6 +525,36 @@ function onChangeRadioButton()
 
 
 
+function getDays(fromDate, toDate){
+	var date1 = fromDate;
+	var date2 = toDate;
+
+	// First we split the values to arrays date1[0] is the year, [1] the month and [2] the day
+	date1 = date1.split('-');
+	date2 = date2.split('-');
+
+	// Now we convert the array to a Date object, which has several helpful methods
+	date1 = new Date(date1[0], date1[1], date1[2]);
+	date2 = new Date(date2[0], date2[1], date2[2]);
+
+	// We use the getTime() method and get the unixtime (in milliseconds, but we want seconds, therefore we divide it through 1000)
+	date1_unixtime = parseInt(date1.getTime() / 1000);
+	date2_unixtime = parseInt(date2.getTime() / 1000);
+
+	// This is the calculated difference in seconds
+	var timeDifference = date2_unixtime - date1_unixtime;
+
+	// in Hours
+	var timeDifferenceInHours = timeDifference / 60 / 60;
+
+	// and finaly, in days :)
+	var timeDifferenceInDays = timeDifferenceInHours  / 24;
+
+	return timeDifferenceInDays;
+
+	}
+	
+
 
 
 
@@ -560,17 +581,17 @@ var temp=0;
  
 $('input[name="instperbar"]').click(function(){
 	var sample=document.getElementById("instperbar");
-	//alert("checked status"+sample);
+	////alert("checked status"+sample);
 	filterlogic();
 		
-		//alert("checked status"+sample);
+		////alert("checked status"+sample);
 		
 console.log('filter applied');
 })
 
 $('input[name="remperbar"]').click(function(){
 		
-    	//alert("checked status"+document.getElementById("remperbar"));
+    	////alert("checked status"+document.getElementById("remperbar"));
 		filterlogic();
 		
        console.log('filter applied');
@@ -656,65 +677,54 @@ $('input[name="remperbar"]').click(function(){
 
    
    if(step==0){
-	   worstFitGroupListFinal=[]
+		  worstFitGroupListFinal=[]
+		  worstFitItemListFinal=[]
+		   worstFitGroupList=[];
+		   worstFitItemList=[];
+		   sortedGroupFinalList=[];
+		   for(var i=0; i<report.groupList.length; i++){ 
+			   bestCount=0
+			   totalInstalledDays=0
+			   worstCount= report.groupList.length
+					for(j=0 ; j<report.itemList.length; j++){ 		
+							if(report.groupList[i].id == report.itemList[j].group){ 
+								if(report.itemList[j].content!=""){
+										   bestCount++
+										   worstCount--
+										  
+											   
+									   }
+								else{
+								
+								 installedDays=getDays(report.itemList[j].start,report.itemList[j].end)
+								 totalInstalledDays=totalInstalledDays+installedDays
+								}
+							}
+					}
+				
+				groups1={}  
+				groups1["id"]=report.groupList[i].id;
+				groups1["bestCount"]=bestCount;
+				groups1["worstCount"]=worstCount;
+				groups1["totalInstalledDays"]=totalInstalledDays;
+				groups1["content"]=report.groupList[i].content;
+				worstFitGroupList.push(groups1);
+			  
+					if(temp<bestCount){
+						temp=bestCount;
+					}
+		   
+			   }
 
-	  worstFitItemListFinal=[]
-	   worstFitGroupList=[];
-	   worstFitItemList=[];
-   for(var i=0; i<report.groupList.length; i++){
-	   
-	   bestCount=0
-	   worstCount= report.groupList.length
-   			for(j=0 ; j<report.itemList.length; j++){ 
-   				
-	     			if(report.groupList[i].id ==report.itemList[j].group){ 
-	     				if(report.itemList[j].content!=""){
-	     					       bestCount++
-	     					       worstCount--
-	     					       
-	     					   }
-	     				
-	     				
-	     				
-	     				}
-	   		}
-	    
-	    groups1={}  
-	    groups1["id"]=report.groupList[i].id;
-	    groups1["bestCount"]=bestCount;
-	    groups1["worstCount"]=worstCount;
-	    groups1["content"]=report.groupList[i].content;
-	    worstFitGroupList.push(groups1);
-	  
-	    	if(temp<bestCount){
-	    		temp=bestCount;
-	    	}
-   
-	   }
-
-	   
- 
- for(var i=0; i< worstFitGroupList.length; i++){
-   			for(j=0 ; j<report.itemList.length; j++){ 
-   				
-	     			if(worstFitGroupList[i].id ==report.itemList[j].group){ 
-	     				   
-	     				items1={}
-	     				items1["id"]=report.itemList[j].id
-	     				items1["content"]=report.itemList[j].content
-	     				items1["start"]=report.itemList[j].start
-	     				items1["end"]= report.itemList[j].end
-	     				items1["group"]= report.itemList[j].group
-	     				items1["className"]= report.itemList[j].className
-	     				items1["type"]= report.itemList[j].type
-	     				items1["title"]= report.itemList[j].title
-	     				worstFitItemList.push(items1)
-	     			}
-   			}
- } 
-	     		
-   
-   
+		   
+		   
+		   for(var i=0; i< worstFitGroupList.length; i++){
+		  			for(j=0 ; j<report.itemList.length; j++){ 
+		  					if(worstFitGroupList[i].id ==report.itemList[j].group){
+		  						worstFitItemList.push(report.itemList[j])
+		  					}
+		  			}
+		   }  
    
    
  
@@ -729,86 +739,150 @@ $('input[name="remperbar"]').click(function(){
   
    
    
- 
-  if(worstFit) { 
- for(var k=temp;k>=0; k--){
-	   
-	   for(var i=0; i<worstFitGroupList.length; i++){
-			if(worstFitGroupList[i].bestCount == k){
-	    worstFitGroupListFinal.push(worstFitGroupList[i]);
-			}
-	   }
- }
-  }
-
- if(bestFit) {
-	 for(var k=0;k<=temp; k++){
-		   
-		   for(var i=0; i<worstFitGroupList.length; i++){
-				if(worstFitGroupList[i].bestCount == k){
-		    worstFitGroupListFinal.push(worstFitGroupList[i]);
+   	  if(worstFit) {
+			for(var k=temp;k>=0; k--){
+			   for(var i=0; i<worstFitGroupList.length; i++){
+					if(worstFitGroupList[i].bestCount == k){
+						worstFitGroupListFinal.push(worstFitGroupList[i]);
+							
+					}
+					
 				}
-		   }
-	 }
-	   
+			  
+					  
+					
+					   worstFitGroupListFinal=worstFitGroupListFinal.sort(function(a, b){
+					   return a.totalInstalledDays-b.totalInstalledDays
+						})
+						sortedGroupFinalList.push.apply(sortedGroupFinalList,worstFitGroupListFinal)
+						worstFitGroupListFinal=[]
+						
+		}
+			
+		
+			console.log(JSON.stringify(sortedGroupFinalList)) 
+		 }
+
+   	  if(bestFit) {
+
+			
+			
+			for(var k=temp;k>=0; k--){
+				   for(var i=0; i<worstFitGroupList.length; i++){
+						if(worstFitGroupList[i].bestCount == k){
+							worstFitGroupListFinal.push(worstFitGroupList[i]);
+								
+						}
+						
+					}
+				  
+						  
+						   worstFitGroupListFinal=worstFitGroupListFinal.sort(function(a, b){
+						   return a.totalInstalledDays-b.totalInstalledDays
+							})
+							sortedGroupFinalList.push.apply(sortedGroupFinalList,worstFitGroupListFinal)
+							worstFitGroupListFinal=[]
+							
+			}
+				
+			
+				
+			
+			sortedGroupFinalList1=[];
+			temp_length=sortedGroupFinalList.length;
+			
+		
+			for(i=temp_length-1;i>=0;i--){
+				sortedGroupFinalList1.push(sortedGroupFinalList[i]);
+				
+			}
+			
+
+			  
+				sortedGroupFinalList=[];
+			 sortedGroupFinalList=sortedGroupFinalList1;
+			
+	 } 
 	    
 	   
-	   
+   	  worstFitItemListFinal=worstFitItemList;
 	   
 	   
  }
  
-   worstFitItemListFinal=worstFitItemList;
+ 
    
  
 
  
     
    
-   }
+   
 
    
 worstFitGroupListFinal1=[]
 worstFitItemListFinal1=[]
    
- for(var i=forStart; i<forEnd; i++){
-	   
-	   
-	   
-   			for(j=0 ; j<worstFitItemListFinal.length; j++){ 
-   				
-	     			if(worstFitGroupListFinal[i].id ==worstFitItemListFinal[j].group){ 
-	     				
-	     				items1={}
-	     				items1["id"]=worstFitItemListFinal[j].id
-	     				items1["content"]=worstFitItemListFinal[j].content
-	     				items1["start"]=worstFitItemListFinal[j].start
-	     				items1["end"]= worstFitItemListFinal[j].end
-	     				items1["group"]= worstFitItemListFinal[j].group
-	     				items1["className"]= worstFitItemListFinal[j].className
-	     				items1["type"]= worstFitItemListFinal[j].type
-	     				items1["title"]= worstFitItemListFinal[j].title
-	     				worstFitItemListFinal1.push(items1)
+for(var i=forStart; i<forEnd; i++){
+	for(j=0; j<worstFitItemListFinal.length; j++){ 
+			if(sortedGroupFinalList[i].id == worstFitItemListFinal[j].group){ 
+				worstFitItemListFinal1.push(worstFitItemListFinal[j])
+				}
+	} 
 
-	     				}
-	   		} 
-	  
-	    worstFitGroupListFinal1.push(worstFitGroupListFinal[i]);
-	  
-	    	
-   
-	   }
+worstFitGroupListFinal1.push(sortedGroupFinalList[i]);
+}
+
+
+
+temp=0;
+end=forEnd-forStart
+
+
+if(worstFit){
+for(var i=temp; i<end;  i++)
+	 {
+	   worstFitGroupListFinal1[i].worstCount=temp++;
+	 }
+////alert("in worstFit")
+}
+
+if(bestFit){
+	 temp=end;
+	 for(var i=temp; i<end;  i++)
+	 {
+	   worstFitGroupListFinal1[i].bestCount=temp++;
+	 }
+	 ////alert("in bestFit")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 
-	    groups.add(worstFitGroupListFinal1)  
-	    items.add(worstFitItemListFinal1) 
-
+groups.add(worstFitGroupListFinal1)  
+items.add(worstFitItemListFinal1) 
 var endDate=statusValue[2];
-	    var startDate=statusValue[3];
-    
-    var container = document.getElementById('visualization');
-    var options= {
-	      
+var startDate=statusValue[3];
+
+var container = document.getElementById('visualization');
+var options= {
+
     	     dataAttributes: 'all',
   	       zoomable: false,
   	    	clickToUse: false,
@@ -931,20 +1005,23 @@ var paginationStatus=function(){
 					statusValue =status.split(',');
 					loadvalue.push(statusValue);
 
-					////alert("nextStatus"+nextStatus);
+					//////alert("nextStatus"+nextStatus);
 					
 					
 					 var actual=report.groupList.length;
 					 var actualLength=Math.ceil(actual/25);
 					 
 					 
-					 //alert("actual length"+actualLength)
-					if(currentcount == actualLength){
+					 ////alert("actual length"+actualLength)
+					if(currentcount == actualLength && actualLength != 1){
 						document.getElementById("next").disabled=true;
 						document.getElementById("previous").disabled=false;
 						
-					}else if(currentcount==1){
+					}else if(currentcount==1 && actualLength > 1){
 						document.getElementById("next").disabled=false;
+						document.getElementById("previous").disabled=true;
+					}else if(currentcount==1 && actualLength == 1){
+						document.getElementById("next").disabled=true;
 						document.getElementById("previous").disabled=true;
 					}else{
 						document.getElementById("next").disabled=false;
