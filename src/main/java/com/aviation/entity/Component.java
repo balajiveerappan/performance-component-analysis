@@ -24,7 +24,8 @@ public class Component {
 	private String description;
 
 	private String cmpySerialNo;
-
+	
+	@Column(name = "mnfgSerialNo")
 	private String mnfgSerialNo;
 
 	private String classification;

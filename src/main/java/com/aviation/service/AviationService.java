@@ -3,6 +3,8 @@ package com.aviation.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.aviation.entity.Component;
 import com.aviation.entity.ComponentHistory;
 import com.aviation.entity.Filter;
@@ -37,5 +39,15 @@ public interface AviationService {
 	public List<Object> getRemovedComponentsTail(Date fromDate, Date toDate);
 	
 	public boolean isValidLogin(String userName, String password);
+	
+	//public List<Component> getComponentIdMGFSerial(String mfgSerial,Date fromDate,Date toDate);
+	
+	public List<Long> getComponentIdMGFSerialNo(String mfgSerial,Date fromDate,Date toDate);
+	
+	public List<Long> getComponentIdMGFPartNo(String mfgPart,Date fromDate,Date toDate);
+	
+	public List<Long> getComponentIdATASystem(String ataSystem,Date fromDate,Date toDate);
+	
+	public List<Long> getComponentIdTailNo(String tail,Date fromDate,Date toDate);
 }
 

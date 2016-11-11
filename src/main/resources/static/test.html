@@ -691,8 +691,13 @@ $('input[name="oCircle"]').click(function(){
    
    
    var length=report.groupList.length;
-
-   if(forEnd==length){
+   
+   if(step==0)
+   {
+    forStart=0;
+       forEnd=25;
+       currentcount=1;
+   }else if(forEnd==length){
 		forEnd=forStart;
 		forStart=forStart-25;
 		currentcount=currentcount-1;

@@ -15,4 +15,11 @@ public interface ComponentRepository extends CrudRepository<Component, Serializa
 	@Query("SELECT comp as comp FROM Component comp where comp.statusUpdatedDate between :fromDate and :toDate")
 	public List<Component> getComponent(@Param("fromDate")final Date fromDate, @Param("toDate")final Date toDate);
 	
+	
+	@Query("SELECT comp as comp FROM Component comp where comp.mnfgSerialNo= :mfgSerial and comp.statusUpdatedDate between :fromDate and :toDate" )
+	public List<Component> getComponentIdMGFSerialNo(@Param("mfgSerial")String mfgSerial,@Param("fromDate")final Date fromDate, @Param("toDate")final Date toDate);
+	
+
+	@Query("SELECT comp as comp FROM Component comp where comp.mfgPartNo= :mfgPart")
+	public List<Component> getComponentIdMGFPartNo(@Param("mfgPart")String mfgPart);
 }

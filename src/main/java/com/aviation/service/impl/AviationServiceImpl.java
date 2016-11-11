@@ -501,4 +501,69 @@ public class AviationServiceImpl implements AviationService {
 		
 	}
 
+
+	public List<Component> getComponentIdMGFSerial(String mfgSerial,Date fromDate, Date toDate) {
+
+		final List<Component> component = compRepository.getComponentIdMGFSerialNo(mfgSerial,fromDate,toDate);
+		return component;
+	}
+	
+	
+	
+	
+
+	public List<Component> getComponentIdMGFPart(String mfgPart) {
+
+		final List<Component> component = compRepository.getComponentIdMGFPartNo(mfgPart);
+		return component;
+	}
+
+	@Override
+	public List<Long> getComponentIdMGFSerialNo(String mfgSerial, Date fromDate, Date toDate) {
+		// TODO Auto-generated method stub
+		String status = "Removed";
+		
+		
+		final List<Long> component = compHisRepository.getComponentIdMGFSerialNo(mfgSerial, status, fromDate, toDate);
+	
+		
+		return component;
+	}
+
+	@Override
+	public List<Long> getComponentIdMGFPartNo(String mfgPart, Date fromDate, Date toDate) {
+		// TODO Auto-generated method stub
+String status = "Removed";
+		
+		
+		final List<Long> component = compHisRepository.getComponentIdMGFPartNo(mfgPart, status, fromDate, toDate);
+	
+		
+		return component;
+	}
+
+	@Override
+	public List<Long> getComponentIdATASystem(String ataSystem, Date fromDate, Date toDate) {
+		// TODO Auto-generated method stub
+String status = "Removed";
+		
+		
+		final List<Long> component = compHisRepository.getComponentIdATASystem(ataSystem, status, fromDate, toDate);
+	
+		
+		return component;
+	}
+
+	@Override
+	public List<Long> getComponentIdTailNo(String tail, Date fromDate, Date toDate) {
+		// TODO Auto-generated method stub
+String status = "Removed";
+		
+		
+		final List<Long> component = compHisRepository.getComponentIdTailNo(tail, status, fromDate, toDate);
+	
+		
+		return component;
+	}
+
 }

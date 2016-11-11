@@ -1,5 +1,12 @@
 <!DOCTYPE html>
+<html>
 <head>
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=0" /> 
+<meta http-equiv="cache-control" content="no-cache" /> 
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -394,10 +401,10 @@ body, html {
 		
 	
 
-			var datam = new google.visualization.DataTable();
-			datam.addColumn("string", "name");
-			datam.addColumn("number", "value");
-			datam.addRows(removalATAData)
+			var datam1 = new google.visualization.DataTable();
+			datam1.addColumn("string", "name");
+			datam1.addColumn("number", "value");
+			datam1.addRows(removalATAData)
 			var optionsm = {
 				title : 'Top 10 worst performing ATAs',
 
@@ -433,11 +440,21 @@ body, html {
 					}
 				}
 			};
-			var chart = new google.visualization.ComboChart(document
+			var chart1 = new google.visualization.ComboChart(document
 					.getElementById('piechart_div'));
-			chart.draw(datam, optionsm);
-			google.visualization.events.addListener(chart, 'select',
-					selectHandler);
+			google.visualization.events.addListener(chart1, 'select', function(){
+				var selection = chart1.getSelection();
+				if (selection.length) {
+					//alert('data ' + selection[0].row);
+					//alert(datam1.getValue(selection[0].row,1));
+					//alert(datam1.getValue(selection[0].row,0));
+					var xAxisValue=datam1.getValue(selection[0].row,0);
+					var dType="ATA";
+					navigation(xAxisValue,dType);
+					//window.open('test.html', '_self');
+				}
+			});
+			chart1.draw(datam1, optionsm);
 		
 			}
 
@@ -460,10 +477,10 @@ body, html {
 					
 					removalCPNSerialData = data;
 		
-			var datam = new google.visualization.DataTable();
-			datam.addColumn("string", "name");
-			datam.addColumn("number", "value");
-			datam.addRows(removalCPNSerialData)
+			var datam2 = new google.visualization.DataTable();
+			datam2.addColumn("string", "name");
+			datam2.addColumn("number", "value");
+			datam2.addRows(removalCPNSerialData)
 
 			
 			var optionsm = {
@@ -500,11 +517,22 @@ body, html {
 					}
 				}
 			};
-			var chart = new google.visualization.ComboChart(document
+			var chart2 = new google.visualization.ComboChart(document
 					.getElementById('barchart_div'));
-			chart.draw(datam, optionsm);
-			google.visualization.events.addListener(chart, 'select',
-					selectHandler);
+			google.visualization.events.addListener(chart2, 'select', function(){
+				var selection = chart2.getSelection();
+				if (selection.length) {
+					//alert('data ' + selection[0].row);
+					//alert('y'+datam2.getValue(selection[0].row,1));
+					//alert('x'+datam2.getValue(selection[0].row,0));
+					var xAxisValue=datam2.getValue(selection[0].row,0);
+					var dType="MSN";
+					navigation(xAxisValue,dType);
+					
+					//window.open('test.html', '_self');
+				}
+			});
+			chart2.draw(datam2, optionsm);
 		
 				}
 				
@@ -536,10 +564,10 @@ body, html {
 }) */
 	// //alert(removalTailData);  
 	
-		var datam = new google.visualization.DataTable();
-		datam.addColumn("string", "name");
-		datam.addColumn("number", "value");
-		datam.addRows(removalTailData)
+		var datam3 = new google.visualization.DataTable();
+		datam3.addColumn("string", "name");
+		datam3.addColumn("number", "value");
+		datam3.addRows(removalTailData)
 
 			var optionsm = {
 				title : 'Top 10 worst performing Tails',
@@ -573,11 +601,23 @@ body, html {
 					}
 				}
 			};
-			var chart = new google.visualization.ComboChart(document
+			var chart3 = new google.visualization.ComboChart(document
 					.getElementById('piechart_divp'));
-			chart.draw(datam, optionsm);
-			google.visualization.events.addListener(chart, 'select',
-					selectHandler);
+			chart3.draw(datam3, optionsm);
+			google.visualization.events.addListener(chart3, 'select', function(){
+				var selection = chart3.getSelection();
+				if (selection.length) {
+					//alert('data ' + selection[0].row);
+					//alert(datam3.getValue(selection[0].row,1));
+					////alert(datam3.getValue(selection[0].row,0));
+					var xAxisValue=datam3.getValue(selection[0].row,0);
+					var dType="Tail";
+					navigation(xAxisValue,dType);
+					
+					//window.open('test.html', '_self');
+				}
+			});
+			chart3.draw(datam3, optionsm);
 			}
 			});
 		}
@@ -669,10 +709,10 @@ removalTailData=removalTailData.sort(function(a, b){
 				
 				//alert("in cpn"+removalCPNData);
 				
-			var datam = new google.visualization.DataTable();
-			datam.addColumn("string", "name");
-			datam.addColumn("number", "value");
-			datam.addRows(removalCPNData)
+			var datam4 = new google.visualization.DataTable();
+			datam4.addColumn("string", "name");
+			datam4.addColumn("number", "value");
+			datam4.addRows(removalCPNData)
 				
 			var optionsm = {
 				title : 'Top 10 worst performing MPNs',
@@ -707,12 +747,26 @@ removalTailData=removalTailData.sort(function(a, b){
 					}
 				}
 			};
-			var chart = new google.visualization.ComboChart(document
+			var chart4 = new google.visualization.ComboChart(document
 					.getElementById('barchart_div2'));
-			chart.draw(datam, optionsm);
-			google.visualization.events.addListener(chart, 'select',
-					selectHandler);
 			
+			google.visualization.events.addListener(chart4, 'select', function(){
+				var selection = chart4.getSelection();
+				if (selection.length) {
+					//alert('data ' + selection[0].row);
+					//alert(datam4.getValue(selection[0].row,1));
+					//alert(datam4.getValue(selection[0].row,0));
+					
+					var xAxisValue=datam4.getValue(selection[0].row,0);
+					var dType="MPN";
+					navigation(xAxisValue,dType);
+					
+					
+					
+					//window.open('test.html', '_self');
+				}
+			});
+			chart4.draw(datam4, optionsm);
 			}
 			
 
@@ -721,9 +775,44 @@ removalTailData=removalTailData.sort(function(a, b){
 			
 		}
 		/*----------------------------------------------------------------------*/
-		function selectHandler() {
-			window.open('test.html', '_self');
+
+		/*
+		* navigation from splash to removal graph
+		*/
+		
+		
+		function navigation(actualData,dataType){
+			
+			
+			//alert("X in ahjax call"+actualData);
+			//alert("data type"+dataType)
+			
+			   $.ajax({
+		  			 url : "/navigationToRemoval/"+actualData+ "/" +dataType,
+		  	         success : function(data) { 
+		  	          //alert("Sucess");
+		  	         window.open('test.html','_self');
+		  	         },
+		  	         error: function(data){
+		  	        	// alert("internal server error")
+		  	         }
+		  	         
+		  	  }); 
+			
+			
+			
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</script>
 
 

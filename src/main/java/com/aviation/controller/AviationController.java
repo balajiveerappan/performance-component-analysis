@@ -102,8 +102,8 @@ public class AviationController {
 		//system.out.println("step value"+step);
 		System.out.println("componentsIds");
 		System.out.println("componentsIds"+componentsIds.size());
-System.out.println("componentsIds"+componentsIds.toString());
-System.out.println("componentsIds"+componentsIds.size());
+		System.out.println("componentsIds"+componentsIds.toString());
+		System.out.println("componentsIds"+componentsIds.size());
 		
 		List<Long> compos1=componentsIds;
 
@@ -445,4 +445,99 @@ System.out.println("componentsIds"+componentsIds.size());
 	}
     
 	
+	
+	@RequestMapping(value = "/navigationToRemoval/{actualData}/{dataType}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public int navigationToRemoval(@PathVariable final String actualData,@PathVariable final String dataType) throws ParseException {
+		// TODOD:: Remove Hard coding 
+		
+    
+
+	String pattern = DATEFORMATNEW;
+	Date sDate=null;
+	Date eDate=null;
+	try {
+		sDate =  new SimpleDateFormat(pattern).parse("2014-08-10");
+		 eDate =  new SimpleDateFormat(pattern).parse("2016-08-10");
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+	 
+	
+	
+	
+    
+    
+		System.out.println("in controlller"+actualData+" type"+dataType);
+		List<Long> comp=new ArrayList<Long>();
+		if(dataType.equals("MSN")){
+		
+			//comp=aviationService.getComponentIdMGFSerial(actualData,sDate,eDate);
+			comp=aviationService.getComponentIdMGFSerialNo(actualData,sDate,eDate);
+		}
+		if(dataType.equals("MPN")){
+			
+			comp=aviationService.getComponentIdMGFPartNo(actualData,sDate,eDate);
+		}
+		if(dataType.equals("ATA")){
+			
+			comp=aviationService.getComponentIdATASystem(actualData,sDate,eDate);
+		}
+		if(dataType.equals("Tail")){
+		
+		comp=aviationService.getComponentIdTailNo(actualData,sDate,eDate);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		System.out.println("component"+comp.size());
+		System.out.println("component"+comp.toString());
+		
+		componentsIds = new ArrayList<Long>();
+	
+		
+			componentsIds=comp;
+		
+		
+		
+		System.out.println("in component id"+componentsIds.size());	
+		
+		String fromDate="2014-08-10";
+		String	toDate="2016-08-10";
+		
+		
+		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+	      System.out.println("fromdate "+fromDate+" to date "+toDate);
+	      optionEnd=toDate;
+	      optionStart=fromDate;
+		Date frmDate= df.parse(fromDate);
+       Date tDate= df.parse(toDate);
+		
+		
+		//system.out.println("to date and from date"+frmDate+" "+tDate);
+		
+		 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		 String  startDate=formatter.format(frmDate);
+    String  endDate=formatter.format(tDate);
+    //system.out.println("after"+startDate+" "+endDate);
+		
+    removalFromDate=startDate.replaceAll("-", "/");
+    removalToDate=endDate.replaceAll("-", "/");
+    
+    
+		
+		
+		return 1;
+	
+	
+	
+	}
 }

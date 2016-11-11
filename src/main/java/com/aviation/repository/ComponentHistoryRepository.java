@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.aviation.entity.Component;
 import com.aviation.entity.ComponentHistory;
 
 public interface ComponentHistoryRepository extends CrudRepository<ComponentHistory, Serializable>{
@@ -50,4 +51,21 @@ public interface ComponentHistoryRepository extends CrudRepository<ComponentHist
        @Query("SELECT component_history as component_history  FROM ComponentHistory  component_history  where  component_history.status= :status and  component_history.tailNo <> :tailValAsNull  and  component_history.fromDate between :fromDate and :toDate GROUP BY component_history.tailNo ")
        public List<Object> getRemovedComponentsTail(@Param("fromDate")final Date fromDate, @Param("toDate")final Date toDate, @Param("status")final String status, @Param("tailValAsNull")final String tailValAsNull );
       
+       @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.mnfgSerialNo= :mfgSerial and history.status= :status and history.fromDate between :fromDate and :toDate ")
+       public List<Long> getComponentIdMGFSerialNo(@Param("mfgSerial")String mfgSerial,@Param("status")String status,@Param("fromDate")Date fromDate, @Param("toDate")final Date toDate);
+       
+       
+       @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.mfgPartNo= :mfgPart and history.status= :status and history.fromDate between :fromDate and :toDate ")
+       public List<Long> getComponentIdMGFPartNo(@Param("mfgPart")String mfgSerial,@Param("status")String status,@Param("fromDate")Date fromDate, @Param("toDate")final Date toDate);
+     
+       
+       @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.ataSystemNo= :ataSystem and history.status= :status and history.fromDate between :fromDate and :toDate ")
+       public List<Long> getComponentIdATASystem(@Param("ataSystem")String ataSystem,@Param("status")String status,@Param("fromDate")Date fromDate, @Param("toDate")final Date toDate);
+     
+       
+       @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.tailNo= :tail and history.status= :status and history.fromDate between :fromDate and :toDate ")
+       public List<Long> getComponentIdTailNo(@Param("tail")String tail,@Param("status")String status,@Param("fromDate")Date fromDate, @Param("toDate")final Date toDate);
+     
+       
+       
 }
