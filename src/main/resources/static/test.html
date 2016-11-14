@@ -198,8 +198,9 @@ padding-top: 0.5%;
 					class="icon-bar"></span>
 			</button>
 					
-					<img alt="client" width="11%" src="img/Cloud Image.png" style="margin-left: -584px ">
-					<img alt="client" src="img/cg.jpg" width="25%" style="margin-left: -333px; ">
+<!-- 					<img alt="client" width="11%" src="img/Cloud Image.png" style="margin-left: -584px "> -->
+<!-- 					<img alt="client" src="img/cg.jpg" width="25%" style="margin-left: -333px; "> -->
+			<img alt="client" src="img/logo.png" height="60px" style="margin-left: -812px ">
 			
 			<!-- <a class="navbar-brand" href="index.html">Aviation</a>-->
 			<label class="navbar-brand" style="margin-left: 420px;margin-bottom: -17px;">Component Removal History</label>
@@ -211,6 +212,7 @@ padding-top: 0.5%;
 	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">File <span class="caret"></span>                                                               </a>
 <ul class="dropdown-menu">
       <li><a href="#">Save As PDF</a></li>
+      <li><a href="#">Save As Excel</a></li>
       <li><a href="#">Print</a></li>
       
     </ul></li>
@@ -345,10 +347,12 @@ padding-top: 0.5%;
  				</div>
 				<table style="margin-left:10px;">
 					<tr>
+						<td><input type="checkbox" name="installedFilter"  id="installedFilter" checked="checked"/></td>
 						<td><label>Installed</label></td>
 						<td style="padding-left: 10px;"><div class="button" style="background-color:Blue;"/></td>
 					</tr>
 					<tr>
+						<td></td>
 						<td><label>Removed</label></td>
 						<td style="padding-left: 10px;"><div class="button" style="background-color:white;"></td>
 					</tr>
@@ -382,17 +386,17 @@ padding-top: 0.5%;
 			</div>
 			<table style="margin-left:10px;">
 				<tr>
-					<td><input type="checkbox" name="Sch"  id="Sch" checked="true"/></td>
+					<td><input type="checkbox" name="Sch"  id="Sch" checked="checked"/></td>
 					<td><label>Scheduled</label></td>
 					<td><div class="triangle" ></div></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="unSch"  id="unSch" checked="true"/></td>
+					<td><input type="checkbox" name="unSch"  id="unSch" checked="checked"/></td>
 					<td><label>Unscheduled</label></td>
 					<td style="padding-left:6px"><div class="utriangle" ></div></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="oCircle"  id="oCircle" checked="true"/></td>
+					<td><input type="checkbox" name="oCircle"  id="oCircle" checked="checked"/></td>
 					<td><label>Others</label></td>
 					<td style="padding-left:6px"><div class="bcircle button" ></div></td>
 				</tr>
@@ -589,7 +593,7 @@ var temp=0;
 	 
   paginationStatus();
   
-  $('input[name="Sch"],input[name="unSch"],input[name="oCircle"]').unbind().click(function(){
+  $('input[name="Sch"],input[name="unSch"],input[name="oCircle"],input[name="installedFilter"]').unbind().click(function(){
 		if($(this).attr('checked')){
 		//console.log('block1');
 		$(this).attr('checked',false);
@@ -627,6 +631,14 @@ $('input[name="oCircle"]').click(function(){
 		
        console.log('filter applied');
 })
+
+$('input[name="installedFilter"]').click(function(){
+		
+    	////alert("checked status"+document.getElementById("remperbar"));
+		filterlogic();
+		
+       console.log('filter applied');
+})
   
 	<!-- ***************Start of Filter logic for chart selection***************	 -->
 	function filterlogic(){
@@ -654,15 +666,29 @@ $('input[name="oCircle"]').click(function(){
 		}
 		if($('input[name="oCircle"]').attr('checked')== 'checked'){	
 			
-			 $('.Others').css('display','block');
-							console.log('redTriangle.png all');
+			$('.Others').css('display','block');
+			
+							console.log('Others.png all');
 		}
 		if($('input[name="oCircle"]').attr('checked')== false || $('input[name="oCircle"]').attr('checked') == undefined ){	
 			
-			 $('.Others').css('display','none');
-							console.log('redTriangle.png none');
+			$('.Others').css('display','none');
+			
+			
+			 				console.log('Others.png none');
 		}
-		
+		if($('input[name="installedFilter"]').attr('checked')==  'checked' ){	
+			
+			
+			$('.positive').css('display','block');
+			 				console.log('installed.png all');
+		}
+		if($('input[name="installedFilter"]').attr('checked')== false || $('input[name="installedFilter"]').attr('checked') == undefined ){	
+			
+			
+			$('.positive').css('display','none');
+			 				console.log('installed.png none');
+		}
 	}
 	<!-- ***************End of Filter logic for chart selection***************	 -->
   
