@@ -16,22 +16,22 @@
 <script src="js/menu.js"></script>
 	<!-- src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
 <script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<!-- <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+	src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 <!-- Include Required Prerequisites -->
-<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
- <script type="text/javascript" src="http://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<!-- <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" /> -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" /> -->
  
 <!-- Include Date Range Picker -->
-<!-- <script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script> -->
-<!-- <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" /> -->
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script> -->
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" /> -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-  <script src="http://visjs.org/dist/vis.js"></script>
-  <link href="http://visjs.org/dist/vis.css" rel="stylesheet" type="text/css" /> 
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" rel="stylesheet" type="text/css" /> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script src="js/vis.js"></script>
+  <link href="css/vis.css" rel="stylesheet" type="text/css" /> 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" rel="stylesheet" type="text/css" /> 
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
@@ -174,9 +174,6 @@ padding-top: 0.5%;
  }
  img {
      vertical-align: top;
- }
- .triangleImage{
- 	z-index:150;
  }
 
 
@@ -597,9 +594,15 @@ var temp=0;
 		if($(this).attr('checked')){
 		//console.log('block1');
 		$(this).attr('checked',false);
+		
+			filterlogic();
+		
 		}
 		else{
 		$(this).attr('checked','checked');
+		
+			filterlogic();
+		
 		//console.log('block2');
 		}
 		
@@ -635,7 +638,7 @@ $('input[name="oCircle"]').click(function(){
 $('input[name="installedFilter"]').click(function(){
 		
     	////alert("checked status"+document.getElementById("remperbar"));
-		filterlogic();
+		filterlogicClick();
 		
        console.log('filter applied');
 })
@@ -692,7 +695,23 @@ $('input[name="installedFilter"]').click(function(){
 	}
 	<!-- ***************End of Filter logic for chart selection***************	 -->
   
-  
+function filterlogicClick(){
+
+	
+		if($('input[name="installedFilter"]').attr('checked')==  'checked' ){	
+			
+			
+			$('.positive').css('display','block');
+			onPageLoad(currentcount);
+			 				console.log('installed.png all');
+		}
+		if($('input[name="installedFilter"]').attr('checked')== false || $('input[name="installedFilter"]').attr('checked') == undefined ){	
+			
+			
+			$('.positive').css('display','none');
+			 				console.log('installed.png none');
+		}
+	}
   
   
   
@@ -1003,7 +1022,7 @@ var options= {
     	}
     	container.addEventListener('click', onClick) ;*/
       	paginationStatus();
-  
+      	filterlogic();
 	
 	<!-- //////////Timeline range////////// -->
 	
@@ -1054,7 +1073,7 @@ function pagination(value) {
 
       	
       	paginationStatus();
-  	
+      	filterlogic();
 
 
   
