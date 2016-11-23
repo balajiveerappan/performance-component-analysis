@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CollectionId;
+
 @Entity
 @Table(name = "component")
 public class Component {
@@ -22,7 +24,8 @@ public class Component {
 
 	@Column(unique = true)
 	private String description;
-
+     
+	@Column(name="cmpy_serial_no")
 	private String cmpySerialNo;
 	
 	@Column(name = "mnfgSerialNo")

@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,11 +35,16 @@ import static com.aviation.util.PathConstants.*;
 @RestController
 public class AviationController {
 	
+	
 	private List<Long> componentsIds;
 	private String removalFromDate;
 	private String removalToDate;
 	private String optionEnd;
 	private String optionStart;
+	private String filterName;
+	private String pageStatus;
+	
+	
 
 
 	@Autowired
@@ -104,10 +111,27 @@ public class AviationController {
 		System.out.println("componentsIds"+componentsIds.size());
 		System.out.println("componentsIds"+componentsIds.toString());
 		System.out.println("componentsIds"+componentsIds.size());
-		
+	//   removalFromDate;
+	  // removalToDate
 		List<Long> compos1=componentsIds;
-
-		ComponentReport componentRemovalRept =  aviationService.getComponents(compos1);
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+	     // System.out.println("fromdate "+fromDate+" to date "+toDate);
+	      //optionEnd=toDate;
+	   //   optionStart=fromDate;
+		  Date frmDate=null;
+		  Date tDate=null;
+		try {
+			frmDate = df.parse(optionStart);
+			tDate = df.parse(optionEnd);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+		
+      
+		ComponentReport componentRemovalRept =  aviationService.getComponents(compos1,frmDate);
 
 		
 		
@@ -332,11 +356,13 @@ public class AviationController {
     
     
     
-	@RequestMapping(value = "/postComponentIds/{components}/{fromDate}/{toDate}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public int getComponentsIds(@RequestBody List<Component> components,@PathVariable final String fromDate, @PathVariable final String toDate) throws ParseException {
+	@RequestMapping(value = "/postComponentIds/{fromDate}/{toDate}/{filterName}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public int getComponentsIds(@RequestBody List<Component> components,@PathVariable final String fromDate,@PathVariable final String toDate,  @PathVariable final String filterName) throws ParseException {
 
 		System.out.println("in post");
 		
+		this.filterName=filterName;
+		this.pageStatus="filterPage";
 		componentsIds = new ArrayList<Long>();
 		//componentsIds=components;
 		for (Component component : components) {
@@ -351,15 +377,15 @@ public class AviationController {
 	      System.out.println("fromdate "+fromDate+" to date "+toDate);
 	      optionEnd=toDate;
 	      optionStart=fromDate;
- 		Date frmDate= df.parse(fromDate);
-         Date tDate= df.parse(toDate);
+ 		  Date frmDate= df.parse(fromDate);
+          Date tDate= df.parse(toDate);
 		
 		
 		//system.out.println("to date and from date"+frmDate+" "+tDate);
 		
 		 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		 String  startDate=formatter.format(frmDate);
-      String  endDate=formatter.format(tDate);
+         String  endDate=formatter.format(tDate);
       //system.out.println("after"+startDate+" "+endDate);
 		
       removalFromDate=startDate.replaceAll("-", "/");
@@ -416,6 +442,8 @@ public class AviationController {
 		status.add(removalToDate);
 		status.add(optionEnd);
 		status.add(optionStart);
+		status.add(filterName);
+		status.add(pageStatus);
 		System.out.println("in status"+status);
 		return status;
 	}
@@ -423,9 +451,26 @@ public class AviationController {
     
     
     
+	@RequestMapping(value = "/getSplashDate", method = RequestMethod.GET/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
+	public String getSplashDate() {
+		Calendar cal = Calendar.getInstance();
+		Date today= cal.getTime();
+		cal.add(Calendar.YEAR, -1);
+		Date prevDate = cal.getTime();
+		//"dd/MM/yyyy"
+		String fromDate = getFormattedDate("dd/MM/yyyy", today);
+		String toDate = getFormattedDate("dd/MM/yyyy", prevDate);
+		return toDate + "-" + fromDate;
+		
+	}
 	
     
-    
+    private String getFormattedDate(String pattern, Date date){
+    	 SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+    	 return formatter.format(date);
+       
+         
+    }
     
     
 	@RequestMapping(value = "/testUnitFilter/{fromDate}/{toDate}/{componentIds}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -470,20 +515,23 @@ public class AviationController {
 		System.out.println("in controlller"+actualData+" type"+dataType);
 		List<Long> comp=new ArrayList<Long>();
 		if(dataType.equals("MSN")){
-		
+		  System.out.println("HI I am in msn ");
 			//comp=aviationService.getComponentIdMGFSerial(actualData,sDate,eDate);
+			this.filterName="Copmany Serial No-"+actualData;
 			comp=aviationService.getComponentIdMGFSerialNo(actualData,sDate,eDate);
+			 System.out.println("HI I am in msn "+comp.toString());
 		}
-		if(dataType.equals("MPN")){
-			
+		if(dataType.equals("CPN")){
+			this.filterName="CPN-"+actualData;
 			comp=aviationService.getComponentIdMGFPartNo(actualData,sDate,eDate);
 		}
 		if(dataType.equals("ATA")){
 			
+			this.filterName="ATA-"+actualData;
 			comp=aviationService.getComponentIdATASystem(actualData,sDate,eDate);
 		}
 		if(dataType.equals("Tail")){
-		
+			this.filterName="TAIL-"+actualData;
 		comp=aviationService.getComponentIdTailNo(actualData,sDate,eDate);
 		}
 		
@@ -526,12 +574,12 @@ public class AviationController {
 		
 		 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		 String  startDate=formatter.format(frmDate);
-    String  endDate=formatter.format(tDate);
+         String  endDate=formatter.format(tDate);
+         this.pageStatus="spalashPage";
     //system.out.println("after"+startDate+" "+endDate);
 		
     removalFromDate=startDate.replaceAll("-", "/");
     removalToDate=endDate.replaceAll("-", "/");
-    
     
 		
 		

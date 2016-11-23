@@ -28,7 +28,7 @@ public interface AviationService {
 	
 	public List<Object> getRemovedComponents(Date fromDate, Date toDate);
 	
-	public ComponentReport getComponents(List<Long> componentIds);
+	public ComponentReport getComponents(List<Long> componentIds,Date fromDate);
 	
 	public List<Object> getRemovedComponentsMFG(Date fromDate, Date toDate);
 	
@@ -49,5 +49,7 @@ public interface AviationService {
 	public List<Long> getComponentIdATASystem(String ataSystem,Date fromDate,Date toDate);
 	
 	public List<Long> getComponentIdTailNo(String tail,Date fromDate,Date toDate);
+	
+
 }
 

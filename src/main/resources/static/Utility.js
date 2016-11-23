@@ -5,7 +5,6 @@ var filteredData=[];
 var sortChecked=null;
 var globalData=[]
 var removalData=[]
-
 var fleets=[];
 var subfleets=[];
 var atas=[];
@@ -28,7 +27,6 @@ var filterID;
 function functionFromDate(){
 	var fromDate=document.getElementById("fromDate").value;       
 	var toDate=document.getElementById("toDate").value;
-	
 	clearData();
 	getComponent(fromDate,toDate); 	
 }
@@ -1237,7 +1235,9 @@ function filterStatus(){
 		checkedStatus.push("New Unit"); 
 		for(var i=0;i<AllData.length;i++){
 			var temp=AllData[i].status;
-			if(temp == "New Unit")
+			var nullCheckMPN = AllData[i].mfgPartNo;
+			var nullCheckATA = AllData[i].ataSystemNo;
+			if(temp == "New Unit"&& nullCheckMPN != 'null' && nullCheckATA != 'null' )
 			filteredData.push(AllData[i])
 		}
 	}
@@ -1246,8 +1246,11 @@ function filterStatus(){
 		checkedStatus.push("Inactive"); 
 		for(var i=0;i<AllData.length;i++){
 			var temp=AllData[i].status;
-			if(temp == "Inactive")
+			var nullCheckMPN = AllData[i].mfgPartNo;
+			var nullCheckATA = AllData[i].ataSystemNo;
+			if(temp == "Inactive" && nullCheckMPN != 'null' && nullCheckATA != 'null' )
 			filteredData.push(AllData[i])
+			
 		}
 		installedUnit.setAttribute("disabled", "true");
 		newUnit.setAttribute("disabled", "true");
@@ -1602,12 +1605,9 @@ function populateSavedSubFleets()
 function populateSavedATAs()
 {
 	
-	
-	////////////alert("Hi I amin fleet populateSavedFleets")
+
 	x=document.getElementById("ataValue");
-	////////////alert('Fleets length'+fleets.length)
-	////////////alert('Fleetdata  length'+filteredData.length)
-	////////////alert('tempdata  length'+atas.length)
+
 		var r=new Array();
   
 			a:for(var i=0; i<filteredData.length; i++){	 
@@ -1637,11 +1637,9 @@ function populateSavedTails()
 {
 	
 	
-	////////////////////alert("Hi I amin fleet populateSavedFleets")
+	
 	x=document.getElementById("tailValue");
-	////////////////////alert('Fleets length'+fleets.length)
-	////////////////////alert('Fleetdata  length'+filteredData.length)
-	////////////////////alert('tempdata  length'+tails.length)
+
 		var r=new Array();
   
 			t:for(var i=0; i<filteredData.length; i++){	 
@@ -1660,8 +1658,7 @@ function populateSavedTails()
 	
 			}
 	
-	
-	////alert("tail number"+filteredData)
+
 	
 	
 }
@@ -1671,11 +1668,9 @@ function  populateSavedCPNs()
 {
 	
 	
-	////////////////////alert("Hi I amin fleet populateSavedFleets")
+
 	x=document.getElementById("companyValue");
-	////////////////////alert('Fleets length'+fleets.length)
-	////////////////////alert('Fleetdata  length'+filteredData.length)
-	////////////////////alert('tempdata  length'+cpns.length)
+	
 		var r=new Array();
   
 			c:for(var i=0; i<filteredData.length; i++){	 
@@ -1809,6 +1804,7 @@ function getFilteredData()
 {
 	var fromDate=document.getElementById("fromDate").value;       
 	var toDate=document.getElementById("toDate").value;
+	var  filterName = $('#filterName').val();
   componentIds=[];
    ////////alert(filteredData.length)
    for(i=0; i<filteredData.length; i++)
@@ -1828,14 +1824,14 @@ function getFilteredData()
 	   }
           
          //alert('Componetes'+componentIds.length)
-           $.ajax({
+/*           $.ajax({
   			 type : "POST",
   			 contentType : "application/json",
-  			 url : "/postComponentIds/"+componentIds+ "/" +fromDate+ "/" +toDate,
+  			 url : "/postComponentIds/" +fromDate+ "/" +toDate+"/"+filterName,
   			 data : JSON.stringify(componentIds),
   			 dataType : 'json',
   	         success : function(data) { 
-  	          //alert("Sucess");
+  	          alert("Sucess");
   	         window.open('test.html','_self');
   	         },
   	         error: function(data){
@@ -1843,7 +1839,25 @@ function getFilteredData()
   	         }
   	         
   	  });
-  
+  */
+   
+   
+   
+              $.ajax({
+		 type : "POST",
+		 contentType : "application/json",
+		 url : "/postComponentIds/" +fromDate+ "/" +toDate+"/"+filterName,
+		 data : JSON.stringify(componentIds),
+		 dataType : 'json',
+         success : function(data) { 
+        	 
+         window.open('test.html','_self');
+         },
+         error: function(data){
+        	 //alert("internal server error")
+         }
+         
+  });
            
            ////////alert(JSON.stringify(componentIds))
    

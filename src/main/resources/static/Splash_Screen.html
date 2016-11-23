@@ -162,7 +162,7 @@ body, html {
 	<!-- Top Logo Header -->
 	<nav id="home"  class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
-		<div class="navbar-header">
+		<div class="navbar-header"     style="width: 70%;"">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#myNavbar">
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -173,7 +173,7 @@ body, html {
 <!-- 					<img alt="client" src="img/cg.jpg" width="25%" style="margin-left: -351px; "> -->
 			<!-- <img alt="client" src="img/logo.png" height="60px" style="margin-left: -777px width=31% "> -->
 			 <img alt="client" src="img/logo.png" height="60px" width ="235px" style="margin-left:-892px"> 
-			
+			<img alt="client" src="img/fedex.png" height="60px" width="200px">
 			<!-- <a class="navbar-brand" href="index.html">Aviation</a>-->
 			<label class="navbar-brand" style="margin-left: 473px;margin-bottom: -17px; padding-top: 1.25rem;">Aircraft Component Analysis</label>
 			<label></label>
@@ -182,7 +182,7 @@ body, html {
 			<ul class="nav navbar-nav navbar-right">
 <!-- 				<li><a href="afterLogin.html">HOME</a></li> -->
 	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">File                                                             </a>
-<ul class="dropdown-menu">
+	<ul class="dropdown-menu">
       <li><a href="#">Save As PDF</a></li>
       <li><a href="#">Save As Excel</a></li>
       <li><a href="#">Print</a></li>
@@ -346,7 +346,7 @@ body, html {
  
  
  
- var dateRange= function(){
+ /* var dateRange= function(){
 		
 		
 			
@@ -384,11 +384,29 @@ body, html {
 		
 		document.getElementById("dateRange").value = "10/08/2014 - 10/08/2016";
 
+	} */
+ 
+	function dateRange(){
+		$.ajax({
+			url : "/getSplashDate",
+			
+			success : function(data){
+		
+				var dateRange =data.split('-');
+				document.getElementById("dateRange").value = data;
+				document.getElementById("fromDate").value = dateRange[1];
+			},
+			
+			error : function(data){
+				
+			}
+			
+		});
+			
+			
+	
+ 
 	}
- 
- 
- 
- 
  
  
  
@@ -485,9 +503,9 @@ body, html {
 			datam2.addColumn("number", "value");
 			datam2.addRows(removalCPNSerialData)
 
-			
+			//'Top 10 worst performing MFG. Serial Numbers'
 			var optionsm = {
-				title : 'Top 10 worst performing MFG. Serial Numbers',
+				title : 'Top 10 worst performing Company Serial Numbers',
 				
 				vAxis : {
 					title : 'Number of removals',
@@ -498,7 +516,7 @@ body, html {
 					}
 				},
 				hAxis : {
-					title : 'MFG. serial number',
+					title : 'Company serial number',
 					titleTextStyle : {
 						bold : true
 					}
@@ -716,9 +734,9 @@ removalTailData=removalTailData.sort(function(a, b){
 			datam4.addColumn("string", "name");
 			datam4.addColumn("number", "value");
 			datam4.addRows(removalCPNData)
-				
+				//Top 10 worst performing MPNs
 			var optionsm = {
-				title : 'Top 10 worst performing MPNs',
+				title : 'Top 10 worst performing CPNs',
 				vAxis : {
 					title : 'Number of removals',
 					format: '#',
@@ -727,7 +745,7 @@ removalTailData=removalTailData.sort(function(a, b){
 					}
 				},
 				hAxis : {
-					title : 'MFG.Part Number',
+					title : 'Company Part Number',
 					titleTextStyle : {
 						bold : true
 						
@@ -761,7 +779,8 @@ removalTailData=removalTailData.sort(function(a, b){
 					//alert(datam4.getValue(selection[0].row,0));
 					
 					var xAxisValue=datam4.getValue(selection[0].row,0);
-					var dType="MPN";
+					//var dType="MPN";
+					var dType="CPN";
 					navigation(xAxisValue,dType);
 					
 					

@@ -13,8 +13,8 @@ import com.aviation.entity.ComponentHistory;
 
 public interface ComponentHistoryRepository extends CrudRepository<ComponentHistory, Serializable>{
 
-	
-	@Query("SELECT  history as history FROM ComponentHistory history JOIN history.component as comp where comp.componentID in :componentIdList ORDER BY history.fromDate ASC ")
+	//@Query("SELECT  history as history FROM ComponentHistory history JOIN history.component as comp where comp.componentID in :componentIdList and  history.fromDate between :fromDate and :toDate ORDER BY history.fromDate ASC ")
+	@Query("SELECT  history as history FROM ComponentHistory history JOIN history.component as comp where comp.componentID in :componentIdList  ORDER BY history.fromDate ASC ")
 	//@Query("SELECT  history as history FROM ComponentHistory history JOIN history.component as comp where comp.componentID =:componentIdList")
 	public List<ComponentHistory> getComponents(@Param("componentIdList")final List<Long> componentIdList);	
 	
@@ -36,13 +36,13 @@ public interface ComponentHistoryRepository extends CrudRepository<ComponentHist
        
        
        
-       @Query("SELECT  distinct(comp.mfgPartNo) as MFGNumber, count(comp.mfgPartNo) as count_val FROM ComponentHistory  history JOIN history.component comp where   history.status= :status and  comp.mfgPartNo <> :mfgValAsNull  and  history.fromDate between :fromDate and :toDate GROUP BY comp.mfgPartNo ORDER BY count_val DESC")
+       @Query("SELECT  distinct(comp.companyPartNo) as MFGNumber, count(comp.companyPartNo) as count_val FROM ComponentHistory  history JOIN history.component comp where   history.status= :status and  comp.companyPartNo <> :mfgValAsNull  and  history.fromDate between :fromDate and :toDate GROUP BY comp.companyPartNo ORDER BY count_val DESC")
        public List<Object> getRemovedComponentsMFG(@Param("fromDate")final Date fromDate, @Param("toDate")final Date toDate, @Param("status")final String status, @Param("mfgValAsNull")final String mfgValAsNull );
        
       /* @Query("SELECT  distinct(comp.cmpySerialNo) as CPNSerialNumber, count(comp.cmpySerialNo) as count_val FROM ComponentHistory  history JOIN history.component comp where   history.status= :status and  comp.cmpySerialNo <> :cpnSerialValAsNull  and  history.fromDate between :fromDate and :toDate GROUP BY comp.cmpySerialNo ORDER BY count_val DESC ")
        public List<Object> getRemovedComponentsCPNSerial(@Param("fromDate")final Date fromDate, @Param("toDate")final Date toDate, @Param("status")final String status, @Param("cpnSerialValAsNull")final String cpnSerialValAsNull );*/
        
-       @Query("SELECT  distinct(comp.mnfgSerialNo) as CPNSerialNumber, count(comp.mnfgSerialNo) as count_val FROM ComponentHistory  history JOIN history.component comp where   history.status= :status and  comp.mnfgSerialNo <> :cpnSerialValAsNull  and  history.fromDate between :fromDate and :toDate GROUP BY comp.mnfgSerialNo ORDER BY count_val DESC ")
+       @Query("SELECT  distinct(comp.cmpySerialNo) as CPNSerialNumber, count(comp.cmpySerialNo) as count_val FROM ComponentHistory  history JOIN history.component comp where   history.status= :status and  comp.cmpySerialNo <> :cpnSerialValAsNull  and  history.fromDate between :fromDate and :toDate GROUP BY comp.cmpySerialNo ORDER BY count_val DESC ")
        public List<Object> getRemovedComponentsCPNSerial(@Param("fromDate")final Date fromDate, @Param("toDate")final Date toDate, @Param("status")final String status, @Param("cpnSerialValAsNull")final String cpnSerialValAsNull );
        
        @Query("SELECT  distinct(comp.tailNo) as TailNumber, count(comp.tailNo) as count_val FROM ComponentHistory  history JOIN history.component comp where   history.status= :status and  comp.tailNo <> :tailRemovalValAsNull  and  history.fromDate between :fromDate and :toDate GROUP BY comp.tailNo ORDER BY count_val DESC")
@@ -51,11 +51,14 @@ public interface ComponentHistoryRepository extends CrudRepository<ComponentHist
        @Query("SELECT component_history as component_history  FROM ComponentHistory  component_history  where  component_history.status= :status and  component_history.tailNo <> :tailValAsNull  and  component_history.fromDate between :fromDate and :toDate GROUP BY component_history.tailNo ")
        public List<Object> getRemovedComponentsTail(@Param("fromDate")final Date fromDate, @Param("toDate")final Date toDate, @Param("status")final String status, @Param("tailValAsNull")final String tailValAsNull );
       
-       @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.mnfgSerialNo= :mfgSerial and history.status= :status and history.fromDate between :fromDate and :toDate ")
+       //company serial number
+       //  @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.mnfgSerialNo= :mfgSerial and history.status= :status and history.fromDate between :fromDate and :toDate ")
+       @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.cmpySerialNo = :mfgSerial and history.status= :status and history.fromDate between :fromDate and :toDate ")
        public List<Long> getComponentIdMGFSerialNo(@Param("mfgSerial")String mfgSerial,@Param("status")String status,@Param("fromDate")Date fromDate, @Param("toDate")final Date toDate);
        
-       
-       @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.mfgPartNo= :mfgPart and history.status= :status and history.fromDate between :fromDate and :toDate ")
+       //Company part number
+       //@Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.mfgPartNo= :mfgPart and history.status= :status and history.fromDate between :fromDate and :toDate ")
+       @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.companyPartNo= :mfgPart and history.status= :status and history.fromDate between :fromDate and :toDate ")
        public List<Long> getComponentIdMGFPartNo(@Param("mfgPart")String mfgSerial,@Param("status")String status,@Param("fromDate")Date fromDate, @Param("toDate")final Date toDate);
      
        

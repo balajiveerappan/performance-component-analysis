@@ -22,4 +22,6 @@ public interface ComponentRepository extends CrudRepository<Component, Serializa
 
 	@Query("SELECT comp as comp FROM Component comp where comp.mfgPartNo= :mfgPart")
 	public List<Component> getComponentIdMGFPartNo(@Param("mfgPart")String mfgPart);
+	
+
 }

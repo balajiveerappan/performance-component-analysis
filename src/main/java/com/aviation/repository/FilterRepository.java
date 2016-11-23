@@ -22,7 +22,8 @@ public interface FilterRepository extends CrudRepository<Filter, Serializable> {
 	/*
 	 * where usage.createdTime between :fromDate and :toDate and usage.orgName=
 	 * :orgName")
-	 */ @Query("SELECT  filter as filter FROM Filter filter where filter.defaultFilter=1")
+	 */
+	@Query("SELECT  filter as filter FROM Filter filter where filter.defaultFilter=1")
 	public Filter getDefaultFilter();
 
    	//@Query("SELECT   max(filter.filterID) as maxval  FROM Filter filter")

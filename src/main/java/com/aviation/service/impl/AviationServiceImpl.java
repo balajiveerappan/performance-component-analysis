@@ -61,18 +61,20 @@ public class AviationServiceImpl implements AviationService {
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void saveFilter(Filter filter) {
 		long defaultFilterId=0;
-		System.out.println("In side service save method");
 		System.out.println(filter.toString());
-		filter.setDefaultFilter(true);
-		defaultFilterId=filterRepository.getDefaultFilter().getFilterID();
-		System.out.println("default id :"+defaultFilterId);
+		Filter deafault_filter=filterRepository.getDefaultFilter();
+		if(deafault_filter!=null){
+		defaultFilterId=deafault_filter.getFilterID();
 		filterRepository.updateDefaultFilter(defaultFilterId);
-		filterRepository.save(filter);
+		}
+		filter.setDefaultFilter(true);
+		filterRepository.save(filter);	
 	}
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void saveAsDefaultFilter(Filter filter) {
 		Filter defaultFilter = getDefaultFilter();
 		if (defaultFilter != null) {
+			System.out.println("no deafault filter exist");
 			defaultFilter.setDefaultFilter(false);
 			filterRepository.save(defaultFilter);
 
@@ -102,7 +104,7 @@ public class AviationServiceImpl implements AviationService {
 
 
 
-	public ComponentReport getComponents(List<Long> componentIds) {
+	public ComponentReport getComponents(List<Long> componentIds, Date fromDate) {
 		
 		 List<ComponentHistory> componentHisList = compHisRepository.getComponents(componentIds);
 		
@@ -118,6 +120,7 @@ public class AviationServiceImpl implements AviationService {
 		 String endDate = null;
 		 String popup = null;
 		 String removalImage = null;
+		 String installationDate=null;
 		 //boolean flag= true;
 		
 		 for(ComponentHistory componentHistory : componentHisList){
@@ -127,14 +130,22 @@ public class AviationServiceImpl implements AviationService {
 			 
 			 group.setId(componentHistory.getComponent().getComponentID().toString());
 			 group.setContent(componentHistory.getComponent().getCmpySerialNo());
-//			 group.setTitle("I will show details");
+		 //group.setTitle("I will show details");
 			 groupSet.add(group);
 			
-			 
-			 
+			 startDate = outputFormatter.format(componentHistory.getFromDate());
+			 installationDate=componentHistory.getFromDate().toString();
+
+			 if(componentHistory.getFromDate().before(fromDate))
+			 {
+				 startDate = outputFormatter.format(fromDate);
+				componentHistory.setFromDate(fromDate);
+				 
+			 }
+
 			 item.setId(String.valueOf(count++));
 			 item.setContent("");
-			 startDate = outputFormatter.format(componentHistory.getFromDate());
+			
 			 if(componentHistory.getTodate()!=null){
 				 endDate = outputFormatter.format(componentHistory.getTodate()) ;
 			 }else{
@@ -302,7 +313,7 @@ public class AviationServiceImpl implements AviationService {
 				 popup = popup +"<br/>Manufacturing Part No : "+ componentHistory.getComponent().getMfgPartNo().toString();
 				 }
 				 popup = popup +"<br/>Tail No : "+ componentHistory.getComponent().getTailNo().toString();
-				 popup = popup +"<br/>Installation Date : "+ componentHistory.getFromDate().toString();
+				 popup = popup +"<br/>Installation Date : "+ installationDate;
 				 popup = popup +"<br/>Installation Station : "+ componentHistory.getMaint_stn().toString();
 				 popup = popup +"<br/>Installation Department : "+ componentHistory.getDept().toString();
 //				 popup = popup +"<br/>HR_DTE : "+ componentHistory.getFromDate().toString();
@@ -475,7 +486,7 @@ public class AviationServiceImpl implements AviationService {
 		
 		//system.out.println("username "+userName+" password "+password);
 		int  loginCount = loginRepository.getLoginVerified(userName, password);
-		//system.out.println("login resulty"+loginCount);
+		//System.out.println("login resulty"+loginCount);
 		if(loginCount == 1){
 			return true;	
 		}
@@ -561,9 +572,10 @@ String status = "Removed";
 		
 		
 		final List<Long> component = compHisRepository.getComponentIdTailNo(tail, status, fromDate, toDate);
-	
-		
 		return component;
 	}
+
+
+	
 
 }
