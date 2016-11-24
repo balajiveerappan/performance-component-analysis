@@ -130,6 +130,20 @@ public class AviationServiceImpl implements AviationService {
 			 
 			 group.setId(componentHistory.getComponent().getComponentID().toString());
 			 group.setContent(componentHistory.getComponent().getCmpySerialNo());
+			 group.setCmpySerialNo(componentHistory.getComponent().getCmpySerialNo().toString());
+			group.setMfgPartNo(componentHistory.getComponent().getMfgPartNo().toString());
+			 group.setCompanyPartNo(componentHistory.getComponent().getCompanyPartNo().toString());
+			 group.setMnfgSerialNo(componentHistory.getComponent().getMnfgSerialNo().toString());
+			 group.setClassification(componentHistory.getComponent().getClassification().toString());
+			 group.setDescription(componentHistory.getComponent().getDescription().toString());
+			 group.setTailNo(componentHistory.getComponent().getTailNo().toString());
+			 group.setFleetNo(componentHistory.getComponent().getFleetNo().toString()); 
+			 group.setSubfleetNo(componentHistory.getComponent().getSubfleetNo().toString());
+			 group.setAtaSystemNo(componentHistory.getComponent().getAtaSystemNo().toString());
+			 group.setStatus(componentHistory.getComponent().getStatus().toString());
+			 
+			 
+
 		 //group.setTitle("I will show details");
 			 groupSet.add(group);
 			
@@ -140,6 +154,8 @@ public class AviationServiceImpl implements AviationService {
 			 {
 				 startDate = outputFormatter.format(fromDate);
 				componentHistory.setFromDate(fromDate);
+					 componentHistory.setStatus("Installed Unit");
+
 				 
 			 }
 

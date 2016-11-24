@@ -918,6 +918,10 @@ $('input[name="installedFilter"]').click(function(){
 		   sortedGroupFinalList=[];
 		   exportGroupList=[];
 		   exportItemList=[];
+		   
+		   
+		   console.log(JSON.stringify(reportGroup));
+			console.log(JSON.stringify(reportItem));
 		   for(var i=0; i<reportGroup.length; i++){ 
 			   bestCount=0
 			   totalInstalledDays=0
@@ -942,6 +946,33 @@ $('input[name="installedFilter"]').click(function(){
 				groups1["worstCount"]=worstCount;
 				groups1["totalInstalledDays"]=totalInstalledDays;
 				groups1["content"]=reportGroup[i].content;
+				groups1["cmpySerialNo"]=reportGroup[i].cmpySerialNo;
+				groups1["mfgPartNo"]=reportGroup[i].mfgPartNo;
+				groups1["companyPartNo"]=reportGroup[i].companyPartNo;
+				groups1["mnfgSerialNo"]=reportGroup[i].mnfgSerialNo;
+				groups1["classification"]=reportGroup[i].classification;
+				groups1["description"]=reportGroup[i].description;
+				groups1["tailNo"]=reportGroup[i].tailNo;
+				groups1["fleetNo"]=reportGroup[i].fleetNo;
+				groups1["subfleetNo"]=reportGroup[i].subfleetNo;
+				groups1["ataSystemNo"]=reportGroup[i].ataSystemNo;
+				groups1["status"]=reportGroup[i].status;
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+					
+				
+				
+				
 				worstFitGroupList.push(groups1);
 			  
 					if(temp<bestCount){
@@ -1230,9 +1261,20 @@ function dateRange(){
 		
 		success : function(data){
 			
-			var dateRange =data.split('-');
-			document.getElementById("dateRange").value = data;
-			document.getElementById("currentDate").value = dateRange[1];
+			
+			
+
+			
+			var dateRange =data.split(',');
+		var tempFrom=dateRange[0].split("-");
+		
+		fromDate=tempFrom[2]+"/"+tempFrom[1]+"/"+tempFrom[0];
+		
+			var tempTo=dateRange[1].split("-");
+			
+			toDate=tempTo[2]+"/"+tempTo[1]+"/"+tempTo[0];
+			document.getElementById("dateRange").value = fromDate+" -"+toDate;
+			document.getElementById("fromDate").value = toDate;
 		},
 		
 		error : function(data){
@@ -1247,30 +1289,125 @@ function dateRange(){
 }
 
 function exportToExcel(){
-	
-	console.log(JSON.stringify(exportItemList));
+	//console.log(JSON.stringify(exportGroupList));
+	//console.log(JSON.stringify(exportItemList));
 				$("#filterListTable tr").remove();
 				 		
 									   	var tr=[];
 										tr.push("<tr>");
-										tr.push("<th>Group Id</th>");
+										
 										tr.push("<th>Start Date</th>");
 										tr.push("<th>End  Date</th>");
+										
+										tr.push("<th>Company Serial No</th>");
+										tr.push("<th>manufacture Part No</th>");
+										tr.push("<th>Company PartNo</th>");
+										tr.push("<th>manufacture Serial No</th>");
+										tr.push("<th>Classification</th>");
+										tr.push("<th>Description</th>");
+										tr.push("<th>Tail No</th>");
+										tr.push("<th>Fleet No</th>");
+										tr.push("<th>Sub-Fleet No</th>");
+										tr.push("<th>ATA System No</th>");
+										tr.push("<th>status</th>");
+								
+										
+										/* tr.push("<th>Classification</th>");
+										tr.push("<th>Description</th>");
+										tr.push("<th>Sub Fleet No</th>");
+										tr.push("<th>Manufacturing Part No</th>");
+										tr.push("<th>Tail No</th>"); */
+										tr.push("<th>Installation Date</th>");
+										tr.push("<th>Installation Station</th>");
+										tr.push("<th>Installation Department</th>");
+										
+										
+				
+										tr.push("<th>Removal Date</th>");
+										tr.push("<th>Removal Station</th>");
+										tr.push("<th>Removal Department</th>");
+										tr.push("<th>Removal Reason</th>");
+										tr.push("<th>Repair Date</th>");
+										tr.push("<th>Repair Station</th>");
+										tr.push("<th>Repair Department</th>");
+										tr.push("<th>Repair Service Order Number</th>");
+					
 										tr.push('</tr>');
 													
-				
+									
+										
+										
+										
+										
+	//			console.log(JSON.stringify(exportItemList))
 				  for(var i=0; i<exportGroupList.length; i++){ 
 							for(j=0 ; j<exportItemList.length; j++){ 		
 									if(exportGroupList[i].id == exportItemList[j].group){ 
+										var title=[];
+										var title_content=[];
 										tr.push('<tr">');
-										tr.push("<td>"+exportGroupList[i].id+"</td>");
+										
 										tr.push("<td>"+exportItemList[j].start+"</td>");
 										tr.push("<td>"+exportItemList[j].end+"</td>");
+										tr.push("<td>"+exportGroupList[i].cmpySerialNo+"</td>");
+										tr.push("<td>"+exportGroupList[i].mfgPartNo+"</td>");
+										tr.push("<td>"+exportGroupList[i].companyPartNo+"</td>");
+										tr.push("<td>"+exportGroupList[i].mnfgSerialNo+"</td>");
+										tr.push("<td>"+exportGroupList[i].classification+"</td>");
+										tr.push("<td>"+exportGroupList[i].description+"</td>");
+										tr.push("<td>"+exportGroupList[i].tailNo+"</td>");
+										tr.push("<td>"+exportGroupList[i].fleetNo+"</td>");
+										tr.push("<td>"+exportGroupList[i].subfleetNo+"</td>");
+										tr.push("<td>"+exportGroupList[i].ataSystemNo+"</td>");
+										tr.push("<td>"+exportGroupList[i].status+"</td>");
+										
+										
+										
+								
+										
+										
+										
+									if(exportItemList[j].content == ""){
+										
+										
+										if(exportItemList[j].title != null){
+										title=(exportItemList[j].title).split("<br/>");
+										//console.log(JSON.stringify(title))
+										//console.log(JSON.stringify(title.length))
+										for(z=0;z<title.length;z++){
+											//console.log(JSON.stringify(title[z]))	
+										title_content[z]=title[z].split(":")
+										}
+										for(k=5;k<title_content.length;k++){
+											tr.push("<td>"+title_content[k][1]+"</td>");
+										}
+									}else{
+										for(k=0;k<2;k++){
+										tr.push("<td> </td>");	
+										}
+										
+									}
+									} if(exportItemList[j].content != ""){
+										for(k=0;k<3;k++){
+											tr.push("<td> </td>");	
+											}
+										title=(exportItemList[j].content).split("<br/>");
+										for(z=0;z<title.length;z++){
+											//console.log(JSON.stringify(title[z]))	
+										title_content[z]=title[z].split(":")
+										}
+										console.log(JSON.stringify(title_content))
+										for(k=3;k<title_content.length-1;k++){
+											tr.push("<td>"+title_content[k][1]+"</td>");
+											
+										}
+									} 
+									
 										tr.push('</tr>');
-									}									
 							}
 
 					   } 
+				  }
 	
 					$('table[id=filterListTable]').append($(tr.join('')));
 fnExcelReport() ;

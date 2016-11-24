@@ -181,13 +181,7 @@ body, html {
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 <!-- 				<li><a href="afterLogin.html">HOME</a></li> -->
-	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">File                                                             </a>
-	<ul class="dropdown-menu">
-      <li><a href="#">Save As PDF</a></li>
-      <li><a href="#">Save As Excel</a></li>
-      <li><a href="#">Print</a></li>
-      
-    </ul></li>
+
 				                        
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu                                                         </a>
 <ul class="dropdown-menu">
@@ -387,21 +381,28 @@ body, html {
 	} */
  
 	function dateRange(){
-		$.ajax({
+ 		$.ajax({
 			url : "/getSplashDate",
 			
 			success : function(data){
 		
-				var dateRange =data.split('-');
-				document.getElementById("dateRange").value = data;
-				document.getElementById("fromDate").value = dateRange[1];
+				var dateRange =data.split(',');
+			var tempFrom=dateRange[0].split("-");
+			
+			fromDate=tempFrom[2]+"/"+tempFrom[1]+"/"+tempFrom[0];
+			
+				var tempTo=dateRange[1].split("-");
+				
+				toDate=tempTo[2]+"/"+tempTo[1]+"/"+tempTo[0];
+				document.getElementById("dateRange").value = fromDate+" -"+toDate;
+				document.getElementById("fromDate").value = toDate;
 			},
 			
 			error : function(data){
 				
 			}
 			
-		});
+		}); 
 			
 			
 	

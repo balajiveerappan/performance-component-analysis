@@ -144,23 +144,21 @@ public class AviationController {
 		// TODOD:: Remove Hard coding 
 		
 		
+
+		String dataIntervalValue=getSplashDate();
+		String[] date=dataIntervalValue.split(",");
 		
-		List<String> dateRange=new ArrayList<String>();
+		
 		String pattern = DATEFORMATNEW;
 		Date sDate=null;
 		Date eDate=null;
-		/*dateRange=dateInterval();
-		//system.out.println("date Range"+dateRange);*/
-
 		try {
-			sDate =  new SimpleDateFormat(pattern).parse("2014-08-10");
-			 eDate =  new SimpleDateFormat(pattern).parse("2016-08-10");
-			 
+			sDate =  new SimpleDateFormat(pattern).parse(date[0]);
+			 eDate =  new SimpleDateFormat(pattern).parse(date[1]);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			
 		}
-
+		 System.out.println(" Splash from date"+sDate+" todate "+eDate);
 		List<Object> componentRemovalRept =  aviationService.getRemovedComponents(sDate, eDate);
 		//List<Object> componentRemovalRept =  aviationService.getRemovedComponents(new Date("2014-08-10"), new Date("2016-08-10"));
 		//system.out.println(componentRemovalRept);
@@ -177,18 +175,21 @@ public class AviationController {
 		// TODOD:: Remove Hard coding 
 		
 		
+
+		String dataIntervalValue=getSplashDate();
+		String[] date=dataIntervalValue.split(",");
 		
 		
 		String pattern = DATEFORMATNEW;
 		Date sDate=null;
 		Date eDate=null;
 		try {
-			sDate =  new SimpleDateFormat(pattern).parse("2014-08-10");
-			 eDate =  new SimpleDateFormat(pattern).parse("2016-08-10");
+			sDate =  new SimpleDateFormat(pattern).parse(date[0]);
+			 eDate =  new SimpleDateFormat(pattern).parse(date[1]);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		 
+		 System.out.println(" MFG from date"+sDate+" todate "+eDate);
 		List<Object> componentRemovalRept =  aviationService.getRemovedComponentsMFG(sDate, eDate);
 		//List<Object> componentRemovalRept =  aviationService.getRemovedComponentsCPN(new Date("2014-08-10"), new Date("2016-08-10"));
 		//system.out.println("in cpn"+componentRemovalRept);
@@ -203,17 +204,20 @@ public class AviationController {
 		
 		
 		
+		String dataIntervalValue=getSplashDate();
+		String[] date=dataIntervalValue.split(",");
+		
 		
 		String pattern = DATEFORMATNEW;
 		Date sDate=null;
 		Date eDate=null;
 		try {
-			sDate =  new SimpleDateFormat(pattern).parse("2014-08-10");
-			 eDate =  new SimpleDateFormat(pattern).parse("2016-08-10");
+			sDate =  new SimpleDateFormat(pattern).parse(date[0]);
+			 eDate =  new SimpleDateFormat(pattern).parse(date[1]);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		 
+		 System.out.println(" CPN SERIAL from date"+sDate+" todate "+eDate);
 		List<Object> componentRemovalRept =  aviationService.getRemovedComponentsCPNSerial(sDate, eDate);
 		//system.out.println("in cpn"+componentRemovalRept);
 		
@@ -277,18 +281,21 @@ public class AviationController {
 		return sent;*/
 		
 		
+
+		String dataIntervalValue=getSplashDate();
+		String[] date=dataIntervalValue.split(",");
 		
 		
 		String pattern = DATEFORMATNEW;
 		Date sDate=null;
 		Date eDate=null;
 		try {
-			sDate =  new SimpleDateFormat(pattern).parse("2014-08-10");
-			 eDate =  new SimpleDateFormat(pattern).parse("2016-08-10");
+			sDate =  new SimpleDateFormat(pattern).parse(date[0]);
+			 eDate =  new SimpleDateFormat(pattern).parse(date[1]);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		 
+		 System.out.println(" tail SERIAL from date"+sDate+" todate "+eDate);
 		List<Object> componentRemovalRept =  aviationService.getRemovedComponentsTailNoOfRemoval(sDate, eDate);
 		//system.out.println("in cpn"+componentRemovalRept);
 		
@@ -308,36 +315,6 @@ public class AviationController {
     }
   
 
-    public  List<String> dateInterval()
-    {
-    	 Calendar cal = Calendar.getInstance();
-         cal.setTimeZone(TimeZone.getTimeZone("GMT"));
-         String toDate=getDate(cal);
-         cal.add(Calendar.DATE, -30);
-         
-         String fromDate=getDate(cal);
-         toDate=toDate.replaceAll("/", "-");
-         fromDate=fromDate.replaceAll("/", "-");
-         DateFormat df = new SimpleDateFormat("dd-MM-yyyy"); 
-         List<String> dateRange=new ArrayList<String>();
-     	try {
-     		Date frmDate= df.parse(fromDate);
-             Date tDate= df.parse(toDate);
-             
-             //system.out.println("Current date"+toDate+ "30 days back"+fromDate);
-             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-             fromDate=formatter.format(frmDate);
-             toDate=formatter.format(tDate);
-             dateRange.add(fromDate);
-             dateRange.add(toDate);
- 	} catch (ParseException e) {
- 		e.printStackTrace();
- 		
- 	}
-		return dateRange;
- 	
-         
-    }
     
     
 
@@ -453,14 +430,43 @@ public class AviationController {
     
 	@RequestMapping(value = "/getSplashDate", method = RequestMethod.GET/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
 	public String getSplashDate() {
-		Calendar cal = Calendar.getInstance();
+		/*Calendar cal = Calendar.getInstance();
 		Date today= cal.getTime();
-		cal.add(Calendar.YEAR, -1);
+		cal.add(Calendar.YEAR, -2);
 		Date prevDate = cal.getTime();
 		//"dd/MM/yyyy"
 		String fromDate = getFormattedDate("dd/MM/yyyy", today);
 		String toDate = getFormattedDate("dd/MM/yyyy", prevDate);
-		return toDate + "-" + fromDate;
+		return toDate + "-" + fromDate;*/
+		
+		
+		 Calendar cal = Calendar.getInstance();
+         cal.setTimeZone(TimeZone.getTimeZone("GMT"));
+         String toDate=getDate(cal);
+         cal.add(Calendar.YEAR, -2);
+         
+         String fromDate=getDate(cal);
+         toDate=toDate.replaceAll("/", "-");
+         fromDate=fromDate.replaceAll("/", "-");
+         DateFormat df = new SimpleDateFormat("dd-MM-yyyy"); 
+         String dateRange = null;
+     	try {
+     		Date frmDate= df.parse(fromDate);
+             Date tDate= df.parse(toDate);
+             
+             //system.out.println("Current date"+toDate+ "30 days back"+fromDate);
+             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+             fromDate=formatter.format(frmDate);
+             toDate=formatter.format(tDate);
+             dateRange=fromDate;
+             dateRange=dateRange+", "+toDate;
+ 	} catch (ParseException e) {
+ 		e.printStackTrace();
+ 		
+ 	}
+		return dateRange;
+ 	
+		
 		
 	}
 	
@@ -497,12 +503,17 @@ public class AviationController {
 		
     
 
-	String pattern = DATEFORMATNEW;
-	Date sDate=null;
-	Date eDate=null;
-	try {
-		sDate =  new SimpleDateFormat(pattern).parse("2014-08-10");
-		 eDate =  new SimpleDateFormat(pattern).parse("2016-08-10");
+
+		String dataIntervalValue=getSplashDate();
+		String[] date=dataIntervalValue.split(",");
+		
+		
+		String pattern = DATEFORMATNEW;
+		Date sDate=null;
+		Date eDate=null;
+		try {
+			sDate =  new SimpleDateFormat(pattern).parse(date[0]);
+			 eDate =  new SimpleDateFormat(pattern).parse(date[1]);
 	} catch (ParseException e) {
 		e.printStackTrace();
 	}
@@ -558,8 +569,8 @@ public class AviationController {
 		
 		System.out.println("in component id"+componentsIds.size());	
 		
-		String fromDate="2014-08-10";
-		String	toDate="2016-08-10";
+		String fromDate=date[0];
+		String	toDate=date[1];
 		
 		
 		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
