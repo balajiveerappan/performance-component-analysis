@@ -459,7 +459,7 @@ public class AviationController {
              fromDate=formatter.format(frmDate);
              toDate=formatter.format(tDate);
              dateRange=fromDate;
-             dateRange=dateRange+", "+toDate;
+             dateRange=dateRange+","+toDate;
  	} catch (ParseException e) {
  		e.printStackTrace();
  		

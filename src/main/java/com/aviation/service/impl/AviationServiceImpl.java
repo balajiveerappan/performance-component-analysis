@@ -128,19 +128,92 @@ public class AviationServiceImpl implements AviationService {
 			 HisotryComponenItemVO item = new HisotryComponenItemVO();
 			////system.out.println(componentHistory.getStatus() + " "+componentHistory.getComponent().getComponentID());
 			 
-			 group.setId(componentHistory.getComponent().getComponentID().toString());
-			 group.setContent(componentHistory.getComponent().getCmpySerialNo());
-			 group.setCmpySerialNo(componentHistory.getComponent().getCmpySerialNo().toString());
-			group.setMfgPartNo(componentHistory.getComponent().getMfgPartNo().toString());
-			 group.setCompanyPartNo(componentHistory.getComponent().getCompanyPartNo().toString());
-			 group.setMnfgSerialNo(componentHistory.getComponent().getMnfgSerialNo().toString());
-			 group.setClassification(componentHistory.getComponent().getClassification().toString());
-			 group.setDescription(componentHistory.getComponent().getDescription().toString());
-			 group.setTailNo(componentHistory.getComponent().getTailNo().toString());
-			 group.setFleetNo(componentHistory.getComponent().getFleetNo().toString()); 
-			 group.setSubfleetNo(componentHistory.getComponent().getSubfleetNo().toString());
-			 group.setAtaSystemNo(componentHistory.getComponent().getAtaSystemNo().toString());
-			 group.setStatus(componentHistory.getComponent().getStatus().toString());
+			 if(componentHistory.getComponent().getComponentID()==null){
+				 group.setId("");
+			 }else{
+				 group.setId(componentHistory.getComponent().getComponentID().toString());
+			 }
+			 
+			 if(componentHistory.getComponent().getCmpySerialNo()==null){
+				 group.setContent("");
+			 }else{
+				 group.setContent(componentHistory.getComponent().getCmpySerialNo().toString());
+			 }
+			 
+			 if(componentHistory.getComponent().getCmpySerialNo()==null){
+				 group.setCmpySerialNo("");
+			 }else{
+				 group.setCmpySerialNo(componentHistory.getComponent().getCmpySerialNo().toString());
+			 }
+			 
+			 if(componentHistory.getComponent().getMfgPartNo()==null){
+				 group.setMfgPartNo("");
+			 }else{
+				 group.setMfgPartNo(componentHistory.getComponent().getMfgPartNo().toString());
+			 }
+			 
+			 if(componentHistory.getComponent().getCompanyPartNo()==null){
+				 group.setCompanyPartNo("");
+			 }else{
+				 group.setCompanyPartNo(componentHistory.getComponent().getCompanyPartNo().toString());
+			 }
+			
+			 
+			 
+			 if(componentHistory.getComponent().getMnfgSerialNo()==null){
+				 group.setMnfgSerialNo("");
+			 }else{
+				 group.setMnfgSerialNo(componentHistory.getComponent().getMnfgSerialNo().toString());
+			 }
+			 
+			 if(componentHistory.getComponent().getClassification()==null){
+				 group.setClassification("");
+			 }else{
+				 group.setClassification(componentHistory.getComponent().getClassification().toString());
+			 }
+			 
+			 
+			 
+			 if(componentHistory.getComponent().getDescription()==null){
+				 group.setDescription("");
+			 }else{
+				 group.setDescription(componentHistory.getComponent().getDescription().toString());
+			 }
+			 
+			 
+			 
+			 if(componentHistory.getComponent().getTailNo()==null){
+				 group.setTailNo("");
+			 }else{
+				 group.setTailNo(componentHistory.getComponent().getTailNo().toString());
+			 }
+			 
+			 
+			 
+			 if(componentHistory.getComponent().getFleetNo()==null){
+				 group.setFleetNo("");
+			 }else{
+				 group.setFleetNo(componentHistory.getComponent().getFleetNo().toString());
+			 }
+			 
+			 
+			 
+			 if(componentHistory.getComponent().getSubfleetNo()==null){
+				 group.setSubfleetNo("");
+			 }else{
+				 group.setSubfleetNo(componentHistory.getComponent().getSubfleetNo().toString());
+			 }
+			 
+			 
+			 
+			 if(componentHistory.getComponent().getStatus()==null){
+				 group.setStatus("");
+			 }else{
+				 group.setStatus(componentHistory.getComponent().getStatus().toString());
+			 }
+			 
+			 
+			 
 			 
 			 
 

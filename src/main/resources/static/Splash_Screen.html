@@ -19,8 +19,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="js/menu.js"></script>
-<src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
-</script> <script
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+ <script
 	src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 <!-- Include Required Prerequisites --> <script type="text/javascript"
@@ -385,10 +385,11 @@ body, html {
 			url : "/getSplashDate",
 			
 			success : function(data){
-		
+				console.log(data);
 				var dateRange =data.split(',');
 			var tempFrom=dateRange[0].split("-");
-			
+			console.log(dateRange);
+			console.log(tempFrom);
 			fromDate=tempFrom[2]+"/"+tempFrom[1]+"/"+tempFrom[0];
 			
 				var tempTo=dateRange[1].split("-");

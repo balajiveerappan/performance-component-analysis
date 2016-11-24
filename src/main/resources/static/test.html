@@ -46,7 +46,7 @@
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
-<script src="js/jquery1.12.4.js"></script>
+<!-- <script src="js/jquery1.12.4.js"></script> -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script src="Utility.js"></script>
@@ -697,8 +697,8 @@ function onchange(scheduledFlag,unscheduledFlag,othersFlag){
 		 }
 
 	 }
-	 console.log(JSON.stringify(reportGroup.length))
-	 console.log(JSON.stringify(reportItem)) 
+	 //console.log(JSON.stringify(reportGroup.length))
+	 //console.log(JSON.stringify(reportItem)) 
 	 var r=[];	  
      var itemList=[];
 	 t:for(i=0;i<Acutalreport.itemList.length;i++){
@@ -768,12 +768,12 @@ function onPageLoad(value){
   
    $('input[name="installedFilter"]').unbind().click(function(){
 		if($(this).attr('checked')){
-		//console.log('block1');
+		////console.log('block1');
 		$(this).attr('checked',false);
 		}
 		else{
 		$(this).attr('checked','checked');
-		//console.log('block2');
+		////console.log('block2');
 		}
 		
 });
@@ -786,7 +786,7 @@ $('input[name="Sch"]').click(function(){
     	////alert("checked status"+document.getElementById("remperbar"));
 		filterlogic();
 		
-       console.log('Sch applied');
+       //console.log('Sch applied');
 })
 
 $('input[name="unSch"]').click(function(){
@@ -794,7 +794,7 @@ $('input[name="unSch"]').click(function(){
     	////alert("checked status"+document.getElementById("remperbar"));
 		filterlogic();
 		
-       console.log('filter applied');
+       //console.log('filter applied');
 })
 
 $('input[name="oCircle"]').click(function(){
@@ -802,7 +802,7 @@ $('input[name="oCircle"]').click(function(){
     	////alert("checked status"+document.getElementById("remperbar"));
 		filterlogic();
 		
-       console.log('filter applied');
+       //console.log('filter applied');
 })*/
 
 $('input[name="installedFilter"]').click(function(){
@@ -810,7 +810,7 @@ $('input[name="installedFilter"]').click(function(){
     	////alert("checked status"+document.getElementById("remperbar"));
 		filterlogic();
 		
-       console.log('filter applied');
+//        //console.log('filter applied');
 })
   
 	<!-- ***************Start of Filter logic for chart selection***************	 -->
@@ -820,47 +820,47 @@ $('input[name="installedFilter"]').click(function(){
 		if($('input[name="Sch"]').attr('checked')== 'checked'){	
 				
 			 $('.redTriangle').css('display','block');
-							console.log('redTriangle.png all');
+							//console.log('redTriangle.png all');
 		}
 		if($('input[name="Sch"]').attr('checked')== false || $('input[name="Sch"]').attr('checked') == undefined ){	
 			
 			 $('.redTriangle').css('display','none');
-							console.log('redTriangle.png none');
+							//console.log('redTriangle.png none');
 		}
 		if($('input[name="unSch"]').attr('checked')== 'checked'){	
 			
 			 $('.yellowTriangle').css('display','block');
-							console.log('yellowTriangle.png all');
+							//console.log('yellowTriangle.png all');
 		}
 		if($('input[name="unSch"]').attr('checked')== false || $('input[name="unSch"]').attr('checked') == undefined ){	
 			
 			 $('.yellowTriangle').css('display','none');
-							console.log('yellowTriangle.png none');
+							//console.log('yellowTriangle.png none');
 		}
 		if($('input[name="oCircle"]').attr('checked')== 'checked'){	
 			
 			$('.Others').css('display','block');
 			
-							console.log('Others.png all');
+							//console.log('Others.png all');
 		}
 		if($('input[name="oCircle"]').attr('checked')== false || $('input[name="oCircle"]').attr('checked') == undefined ){	
 			
 			$('.Others').css('display','none');
 			
 			
-			 				console.log('Others.png none');
+			 				//console.log('Others.png none');
 		}*/
 		if($('input[name="installedFilter"]').attr('checked')==  'checked' ){	
 			
 			
 			$('.positive').css('display','block');
-			 				console.log('installed.png all');
+			 				//console.log('installed.png all');
 		}
 		if($('input[name="installedFilter"]').attr('checked')== false || $('input[name="installedFilter"]').attr('checked') == undefined ){	
 			
 			
 			$('.positive').css('display','none');
-			 				console.log('installed.png none');
+			 				//console.log('installed.png none');
 		}
 	}
 	<!-- ***************End of Filter logic for chart selection***************	 -->
@@ -920,8 +920,8 @@ $('input[name="installedFilter"]').click(function(){
 		   exportItemList=[];
 		   
 		   
-		   console.log(JSON.stringify(reportGroup));
-			console.log(JSON.stringify(reportItem));
+		   //console.log(JSON.stringify(reportGroup));
+			//console.log(JSON.stringify(reportItem));
 		   for(var i=0; i<reportGroup.length; i++){ 
 			   bestCount=0
 			   totalInstalledDays=0
@@ -1018,7 +1018,7 @@ $('input[name="installedFilter"]').click(function(){
 		}
 			
 		
-			//console.log(JSON.stringify(sortedGroupFinalList)) 
+			////console.log(JSON.stringify(sortedGroupFinalList)) 
 		 }
 
    	  if(bestFit) {
@@ -1126,7 +1126,7 @@ var options=
     var timeline = new vis.Timeline(container, items, groups, options); 
     /*function onClick (event) {
     	  var properties = timeline.getEventProperties(event);
-    	  console.log(properties);
+    	  //console.log(properties);
     	  if(properties.item){
     		  for (i = 0; i < report.itemList.length; i++) { 
 			    if(properties.item == report.itemList[i].id){
@@ -1223,14 +1223,14 @@ var paginationStatus=function(){
 						document.getElementById("selectedFilter").innerHTML= statusValue[4];
 						document.getElementById("description").style.display='none';
 						document.getElementById("filterName").style.display='block';
-						document.getElementById("dateRange").value = statusValue[0]+" - "+statusValue[1];
+					document.getElementById("dateRange").value = statusValue[0]+" - "+statusValue[1];
 						}
 					else{
 						document.getElementById("selectedItem").innerHTML= statusValue[4]
 						document.getElementById("description").style.display='block';
 						document.getElementById("filterName").style.display='none';
 						dateRange();
-						//document.getElementById("dateRange").value = statusValue[0]+" - "+statusValue[1];
+					document.getElementById("dateRange").value = statusValue[0]+" - "+statusValue[1];
 						
 				     }
 				/* 	if()
@@ -1268,13 +1268,14 @@ function dateRange(){
 			var dateRange =data.split(',');
 		var tempFrom=dateRange[0].split("-");
 		
-		fromDate=tempFrom[2]+"/"+tempFrom[1]+"/"+tempFrom[0];
+		var fromDate=tempFrom[2]+"/"+tempFrom[1]+"/"+tempFrom[0];
 		
 			var tempTo=dateRange[1].split("-");
 			
-			toDate=tempTo[2]+"/"+tempTo[1]+"/"+tempTo[0];
-			document.getElementById("dateRange").value = fromDate+" -"+toDate;
-			document.getElementById("fromDate").value = toDate;
+			var toDate=tempTo[2]+"/"+tempTo[1]+"/"+tempTo[0];
+// 			alert(toDate);
+			document.getElementById("dateRange").value = fromDate+" - "+toDate;
+			document.getElementById("currentDate").value = toDate;
 		},
 		
 		error : function(data){
@@ -1289,8 +1290,8 @@ function dateRange(){
 }
 
 function exportToExcel(){
-	//console.log(JSON.stringify(exportGroupList));
-	//console.log(JSON.stringify(exportItemList));
+	////console.log(JSON.stringify(exportGroupList));
+	////console.log(JSON.stringify(exportItemList));
 				$("#filterListTable tr").remove();
 				 		
 									   	var tr=[];
@@ -1339,7 +1340,7 @@ function exportToExcel(){
 										
 										
 										
-	//			console.log(JSON.stringify(exportItemList))
+	//			//console.log(JSON.stringify(exportItemList))
 				  for(var i=0; i<exportGroupList.length; i++){ 
 							for(j=0 ; j<exportItemList.length; j++){ 		
 									if(exportGroupList[i].id == exportItemList[j].group){ 
@@ -1372,10 +1373,10 @@ function exportToExcel(){
 										
 										if(exportItemList[j].title != null){
 										title=(exportItemList[j].title).split("<br/>");
-										//console.log(JSON.stringify(title))
-										//console.log(JSON.stringify(title.length))
+										////console.log(JSON.stringify(title))
+										////console.log(JSON.stringify(title.length))
 										for(z=0;z<title.length;z++){
-											//console.log(JSON.stringify(title[z]))	
+											////console.log(JSON.stringify(title[z]))	
 										title_content[z]=title[z].split(":")
 										}
 										for(k=5;k<title_content.length;k++){
@@ -1393,10 +1394,10 @@ function exportToExcel(){
 											}
 										title=(exportItemList[j].content).split("<br/>");
 										for(z=0;z<title.length;z++){
-											//console.log(JSON.stringify(title[z]))	
+											////console.log(JSON.stringify(title[z]))	
 										title_content[z]=title[z].split(":")
 										}
-										console.log(JSON.stringify(title_content))
+										//console.log(JSON.stringify(title_content))
 										for(k=3;k<title_content.length-1;k++){
 											tr.push("<td>"+title_content[k][1]+"</td>");
 											
