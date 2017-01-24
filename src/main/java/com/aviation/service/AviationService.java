@@ -3,10 +3,8 @@ package com.aviation.service;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
-
 import com.aviation.entity.Component;
-import com.aviation.entity.ComponentHistory;
+
 import com.aviation.entity.Filter;
 import com.aviation.vo.ComponentReport;
 
@@ -49,6 +47,8 @@ public interface AviationService {
 	public List<Long> getComponentIdATASystem(String ataSystem,Date fromDate,Date toDate);
 	
 	public List<Long> getComponentIdTailNo(String tail,Date fromDate,Date toDate);
+	
+	public List<Object> getFailureData();
 	
 
 }

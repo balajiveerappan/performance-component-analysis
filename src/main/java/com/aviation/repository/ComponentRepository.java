@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.aviation.entity.Component;
 
+
 public interface ComponentRepository extends CrudRepository<Component, Serializable>{
 
 	@Query("SELECT comp as comp FROM Component comp where comp.statusUpdatedDate between :fromDate and :toDate")
@@ -22,6 +23,9 @@ public interface ComponentRepository extends CrudRepository<Component, Serializa
 
 	@Query("SELECT comp as comp FROM Component comp where comp.mfgPartNo= :mfgPart")
 	public List<Component> getComponentIdMGFPartNo(@Param("mfgPart")String mfgPart);
+	
+    @Query("SELECT  comp.componentID,comp.cmpySerialNo,comp.failureProbability as failure,comp.description,comp.mfgPartNo FROM Component  comp GROUP BY  comp.componentID ORDER BY failure DESC")
+    public List<Object> getFailureProbability();
 	
 
 }

@@ -19,7 +19,7 @@ public class Component {
 
 	@Id
 	@Column(name = "componentID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long componentID;
 
 	@Column(unique = true)
@@ -57,6 +57,28 @@ public class Component {
 
 	@Column(name = "status")
 	private String status;
+	
+	@Column(name = "mnfg_date")
+	private Date mfgDate;
+	
+	@Column(name = "failure_probability")
+	private int  failureProbability;
+
+	public Date getMfgDate() {
+		return mfgDate;
+	}
+
+	public void setMfgDate(Date mfgDate) {
+		this.mfgDate = mfgDate;
+	}
+
+	public int getFailureProbability() {
+		return failureProbability;
+	}
+
+	public void setFailureProbability(int failureProbability) {
+		this.failureProbability = failureProbability;
+	}
 
 	public Long getComponentID() {
 		return componentID;

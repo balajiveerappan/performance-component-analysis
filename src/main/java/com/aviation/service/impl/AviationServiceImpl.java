@@ -1,8 +1,7 @@
 package com.aviation.service.impl;
 
-import static com.aviation.util.PathConstants.SUBGROUPORDER;
+import static com.aviation.util.PathConstants.DATEFORMAT;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aviation.entity.Component;
 import com.aviation.entity.ComponentHistory;
+
 import com.aviation.entity.Filter;
 import com.aviation.repository.ComponentHistoryRepository;
 import com.aviation.repository.ComponentRepository;
@@ -29,8 +29,6 @@ import com.aviation.service.AviationService;
 import com.aviation.vo.ComponentHistoryGroupVO;
 import com.aviation.vo.ComponentReport;
 import com.aviation.vo.HisotryComponenItemVO;
-
-import static com.aviation.util.PathConstants.DATEFORMAT;
 
 @Service
 public class AviationServiceImpl implements AviationService {
@@ -662,6 +660,12 @@ String status = "Removed";
 		
 		final List<Long> component = compHisRepository.getComponentIdTailNo(tail, status, fromDate, toDate);
 		return component;
+	}
+
+	@Override
+	public List<Object> getFailureData() {
+		List<Object> failureData=compRepository.getFailureProbability();
+		return failureData;
 	}
 
 

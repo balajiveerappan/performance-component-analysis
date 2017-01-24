@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aviation.entity.Component;
 import com.aviation.entity.ComponentHistory;
+
 import com.aviation.entity.Filter;
 
 import com.aviation.entity.Login;
@@ -598,5 +599,25 @@ public class AviationController {
 	
 	
 	
+	}
+	@RequestMapping(value = "/getfailureData", method = RequestMethod.GET/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
+	public List<Object> getfailureData() {
+	
+	
+	List<Object> actualldata=new ArrayList<Object>();
+	
+	List<Object> failureData=aviationService.getFailureData();
+	int count=0;
+	for(Object s:failureData){
+		if(count == 6){
+			break;
+		}else{
+		
+		actualldata.add(s);
+		count++;
+		}
+	}
+	
+	return actualldata;
 	}
 }
