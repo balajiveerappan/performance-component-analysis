@@ -68,6 +68,9 @@ public interface ComponentHistoryRepository extends CrudRepository<ComponentHist
        
        @Query("SELECT  comp.componentID as com FROM ComponentHistory  history JOIN history.component comp where comp.tailNo= :tail and history.status= :status and history.fromDate between :fromDate and :toDate ")
        public List<Long> getComponentIdTailNo(@Param("tail")String tail,@Param("status")String status,@Param("fromDate")Date fromDate, @Param("toDate")final Date toDate);
+       
+       
+
      
        
        

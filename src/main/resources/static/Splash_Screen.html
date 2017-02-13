@@ -53,6 +53,9 @@
 	border-top: 20px solid #23CF46;
 }
 
+#logout {
+    font-size: 17px;
+}
 .vis-item.vis-background.positive {
 	background-color: white !important;
 	width: 0px;
@@ -152,6 +155,37 @@ body, html {
 	height: 0px !important;
 	margin-top: 6px;
 }
+.container-fluid {
+   padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+ul.nav.navbar-nav.navbar-right {
+    margin-right: 75px;
+}
+
+
+.imageSize{
+
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-right: 1%;
+        padding-left: 2%;
+    padding-top: 5%;
+}
+
+#imageCraft{
+
+    margin: 0 0 0px;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin: 2px;
+    background-color: lightgoldenrodyellow;
+    }
+    b {
+    margin-left: 1%;
+}
 </style>
 
 <!-- <script src="../../Code/vis/dist/vis.js"></script> --> <!-- <link href="../../Code/vis/dist/vis.css" rel="stylesheet" type="text/css" /> -->
@@ -159,8 +193,8 @@ body, html {
 </head>
 <body onload="dateRange();" >
 
-	<!-- Top Logo Header -->
-	<nav id="home"  class="navbar navbar-default navbar-fixed-top">
+	<!-- <!-- Top Logo Header -->
+	<!-- <nav id="home"  class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header"     style="width: 70%;"">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -169,23 +203,21 @@ body, html {
 					class="icon-bar"></span>
 			</button>
 					
-<!-- 					<img alt="client" width="11%" src="img/Cloud Image.png" style="margin-left: -652px "> -->
-<!-- 					<img alt="client" src="img/cg.jpg" width="25%" style="margin-left: -351px; "> -->
-			<!-- <img alt="client" src="img/logo.png" height="60px" style="margin-left: -777px width=31% "> -->
+					<img alt="client" width="11%" src="img/Cloud Image.png" style="margin-left: -652px ">
+					<img alt="client" src="img/cg.jpg" width="25%" style="margin-left: -351px; ">
+			<img alt="client" src="img/logo.png" height="60px" style="margin-left: -777px width=31% ">
 			 <img alt="client" src="img/logo.png" height="60px" width ="235px" style="margin-left:-892px"> 
-<!-- 			<img alt="client" src="img/fedex.png" height="60px" width="200px"> -->
-			<!-- <a class="navbar-brand" href="index.html">Aviation</a>-->
+			<img alt="client" src="img/fedex.png" height="60px" width="200px">
+			<a class="navbar-brand" href="index.html">Aviation</a>
 			<label class="navbar-brand" style="margin-left: 473px;margin-bottom: -17px; padding-top: 1.25rem;">Aircraft Component Analysis</label>
 			<label></label>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-<!-- 				<li><a href="afterLogin.html">HOME</a></li> -->
-
+				<li><a href="afterLogin.html">HOME</a></li>
 				                        
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu                                                         </a>
 <ul class="dropdown-menu">
-
 <li><a href="afterLogin.html">Home</a></li>
 							<li><a href="Unit_Filter.html">Filter Editor</a></li>
 </ul></li>
@@ -194,9 +226,45 @@ body, html {
 			</ul>
 		</div>
 	</div>
+	</nav> -->
+	
+ 
+	<!-- Top Logo Header -->
+	<nav id="home"  class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+					
+<!-- 					<img alt="client" width="11%" src="img/Cloud Image.png" style="margin-left: -618px "> -->
+<!-- 					<img alt="client" src="img/cg.jpg" width="25%" style="margin-left: -341px; "> -->
+			<img alt="client" src="img/logo.png" height="60px" width ="235px" style="margin-left:-878px">
+<!-- 			<img alt="client" src="img/fedex.png" height="60px" width="200px"> -->
+			<!-- <a class="navbar-brand" href="index.html">Aviation</a>-->
+			<label class="navbar-brand" style="margin-left: 473px;margin-bottom: -17px; padding-top: 1.25rem;">Aircraft Component Analysis</label>
+			<label></label>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right" style="display:inline;">
+				
+	
+				                        
+<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu                                                              </a>
+<ul class="dropdown-menu">
+<li><a href="afterLogin.html">Home</a></li>
+<li><a href="Unit_Filter.html">Filter Editor</a></li>
+
+</ul></li>
+				<li><a href="index.html" id="logout" >Logout</a></li>
+				
+			</ul>
+		</div>
+	</div>
 	</nav>
 	<!-- End of Top Logo Header -->
-
 
 
 	<form action="">
@@ -204,13 +272,27 @@ body, html {
 
 
 </div>
-			<div class="graph_body main_right">
+			<div class="graph_body main_right" >
+			
+			
+
+			
+			<table style="background-color: white;" class="columns" id="filterListTable">
+	</table>
+			
+			
 				<!--//////////////////////////// Chart Section ///////////////////////////////////////// -->
-				<table style="background-color: white;" class="columns">
-					<tr>
-						<td align="center" colspan="2"><img width="60%" align="middle" style="height: 275px" alt="Predictive Analysis" src="img/predictive widget.JPG"></td>
-<!-- 						<td><img width="80%" alt="Predictive Analysis" src="img/predictive analysis.PNG"></td> -->
+				<table style="background-color: white;" class="columns" >
+				
+					<!-- <tr>
+						<td><p id="imageCraft"><img alt="client" class="imageSize" src="img/aeroplane.png"  width="40px" height="40px" ><b>92% Probability of failure Hydrahulic Controller MPN:</b></img></br><b>ATAn</b></p></td><td><p id="imageCraft"><img alt="client"  src="img/aeroplane.png" class="imageSize"  width="40px" height="40px" ><b>92% Probability of failure Hydrahulic Controller MPN:</b></img></br><b>ATAn</b></p></td>
 					</tr>
+					<tr>
+						<td><p id="imageCraft"><img alt="client" class="imageSize" src="img/aeroplane.png"  width="40px" height="40px" ><b>92% Probability of failure Hydrahulic Controller MPN:</b></img></br><b>ATAn</b></p></td><td><p id="imageCraft"><img alt="client"  src="img/aeroplane.png"  class="imageSize"  width="40px" height="40px" ><b>92% Probability of failure Hydrahulic Controller MPN:</b></img></br><b>ATAn</b></p></td>
+					</tr>
+					<tr>
+						<td><p id="imageCraft"><img alt="client"  class="imageSize" src="img/aeroplane.png"  width="40px" height="40px" ><b>92% Probability of failure Hydrahulic Controller MPN:</b></img></br><b>ATAn</b></p></td><td><p id="imageCraft"><img alt="client"  src="img/aeroplane.png" class="imageSize"  width="40px" height="40px" ><b>92% Probability of failure Hydrahulic Controller MPN:</b></img></br><b>ATAn</b></p></td>
+					</tr> -->
 					<tr>
 						<td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
 						<td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
@@ -298,6 +380,8 @@ body, html {
 
 			</div>
 	</form>
+
+
 
 
 	<script type="text/javascript">
@@ -397,6 +481,8 @@ body, html {
 				toDate=tempTo[2]+"/"+tempTo[1]+"/"+tempTo[0];
 				document.getElementById("dateRange").value = fromDate+" -"+toDate;
 				document.getElementById("fromDate").value = toDate;
+				
+				getfailureData();
 			},
 			
 			error : function(data){
@@ -409,7 +495,29 @@ body, html {
 	
  
 	}
- 
+	
+	
+	function getfailureData(){
+ 		$.ajax({
+			url : "/getfailureData",
+			success : function(data){
+			var tr=[];
+	 		tr.push("<table>");
+
+	 				for (var i = 0; i < data.length; i=i+2) {
+	 					var temp=data[i]
+	 					tr.push("<tr>");
+	 			 		tr.push("<td style='width: 30%;' ><div id='imageCraft'><table style='width: 90%'><tr><td><img alt='client' class='imageSize' src='img/aeroplane.png'  width='40px' height='40px'></img></br><b>"+temp[1]+"</b></td><td><b style='margin-left: 0%;'>In Next 3 Month, This component has "+temp[2]+"% Probability of failure </br>"+temp[3]+" with MPN :"+temp[4]+"</b></td></tr></table></div></td>");
+	 			 		var k=i+1
+	 			 		temp=data[k];
+	 			 		tr.push("<td style='width: 30%;' ><div id='imageCraft'><table style='width: 90%'><tr><td><img alt='client' class='imageSize' src='img/aeroplane.png'  width='40px' height='40px'></img></br><b>"+temp[1]+"</b></td><td><b style='margin-left: 0%;'>In Next 3 Month, This component has "+temp[2]+"% Probability of failure </br>"+temp[3]+" with MPN :"+temp[4]+"</b></td></tr></table></div></td>");
+	 			 		tr.push('</tr>');
+	 				} 
+	 				tr.push("</table>");
+	 		$('table[id=filterListTable]').append($(tr.join('')));
+			}
+ 		});
+	}
  
  
 		function drawVisualization() {
