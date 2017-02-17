@@ -162,7 +162,12 @@ body, html {
     margin-left: 0px;
 }
 ul.nav.navbar-nav.navbar-right {
+<<<<<<< HEAD
     margin-right: 75px;
+=======
+    margin-right: 221px;
+    display: inline;
+>>>>>>> eeabe1f08c6bd4071253300e31899aab32860218
 }
 
 
@@ -171,8 +176,11 @@ ul.nav.navbar-nav.navbar-right {
     margin-left: 1%;
     margin-top: 1%;
     margin-right: 1%;
+<<<<<<< HEAD
         padding-left: 2%;
     padding-top: 5%;
+=======
+>>>>>>> eeabe1f08c6bd4071253300e31899aab32860218
 }
 
 #imageCraft{
@@ -182,6 +190,10 @@ ul.nav.navbar-nav.navbar-right {
     border-radius: 10px;
     margin: 2px;
     background-color: lightgoldenrodyellow;
+<<<<<<< HEAD
+=======
+     font-size: 13px;
+>>>>>>> eeabe1f08c6bd4071253300e31899aab32860218
     }
     b {
     margin-left: 1%;
@@ -215,6 +227,10 @@ ul.nav.navbar-nav.navbar-right {
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="afterLogin.html">HOME</a></li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> eeabe1f08c6bd4071253300e31899aab32860218
 				                        
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu                                                         </a>
 <ul class="dropdown-menu">
@@ -248,6 +264,7 @@ ul.nav.navbar-nav.navbar-right {
 			<label></label>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
+<<<<<<< HEAD
 			<ul class="nav navbar-nav navbar-right" style="display:inline;">
 				
 	
@@ -260,6 +277,20 @@ ul.nav.navbar-nav.navbar-right {
 </ul></li>
 				<li><a href="index.html" id="logout" >Logout</a></li>
 				
+=======
+			<ul class="nav navbar-nav navbar-right">
+				
+	
+				                        
+<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu <span class="caret"></span>                                                               </a>
+<ul class="dropdown-menu">
+<li><a href="afterLogin.html">HOME</a></li>
+<li><a href="Unit_Filter.html">Filter Editor</a></li>
+
+</ul></li>
+				
+				<li><a href="index.html" id="logout">LOGOUT</a></li>
+>>>>>>> eeabe1f08c6bd4071253300e31899aab32860218
 			</ul>
 		</div>
 	</div>
@@ -502,11 +533,16 @@ ul.nav.navbar-nav.navbar-right {
 			url : "/getfailureData",
 			success : function(data){
 			var tr=[];
+<<<<<<< HEAD
 	 		tr.push("<table>");
+=======
+	 		//tr.push("<table>");
+>>>>>>> eeabe1f08c6bd4071253300e31899aab32860218
 
 	 				for (var i = 0; i < data.length; i=i+2) {
 	 					var temp=data[i]
 	 					tr.push("<tr>");
+<<<<<<< HEAD
 	 			 		tr.push("<td style='width: 30%;' ><div id='imageCraft'><table style='width: 90%'><tr><td><img alt='client' class='imageSize' src='img/aeroplane.png'  width='40px' height='40px'></img></br><b>"+temp[1]+"</b></td><td><b style='margin-left: 0%;'>In Next 3 Month, This component has "+temp[2]+"% Probability of failure </br>"+temp[3]+" with MPN :"+temp[4]+"</b></td></tr></table></div></td>");
 	 			 		var k=i+1
 	 			 		temp=data[k];
@@ -514,6 +550,15 @@ ul.nav.navbar-nav.navbar-right {
 	 			 		tr.push('</tr>');
 	 				} 
 	 				tr.push("</table>");
+=======
+	 			 		tr.push("<td style='width: 30%;'><p id='imageCraft'><img alt='client' class='imageSize' src='img/aeroplane.png'  width='40px' height='40px' ><b>"+temp[2]+"% Probability of failure "+temp[3]+" MPN:"+temp[4]+"</b></img></br><b>"+temp[1]+"</b></p></td>");
+	 			 		var k=i+1
+	 			 		temp=data[k];
+	 			 		tr.push("<td style='width: 30%;'><p id='imageCraft'><img alt='client' class='imageSize' src='img/aeroplane.png'  width='40px' height='40px' ><b>"+temp[2]+"% Probability of failure "+temp[3]+" MPN:"+temp[4]+"</b></img></br><b>"+temp[1]+"</b></p></td>");
+	 			 		tr.push('</tr>');
+	 				} 
+	 				//tr.push("</table>");
+>>>>>>> eeabe1f08c6bd4071253300e31899aab32860218
 	 		$('table[id=filterListTable]').append($(tr.join('')));
 			}
  		});

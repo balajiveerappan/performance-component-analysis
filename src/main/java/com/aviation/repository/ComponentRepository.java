@@ -24,7 +24,11 @@ public interface ComponentRepository extends CrudRepository<Component, Serializa
 	@Query("SELECT comp as comp FROM Component comp where comp.mfgPartNo= :mfgPart")
 	public List<Component> getComponentIdMGFPartNo(@Param("mfgPart")String mfgPart);
 	
+<<<<<<< HEAD
     @Query("SELECT  comp.componentID,comp.cmpySerialNo,comp.failureProbability as failure,comp.description,comp.mfgPartNo FROM Component  comp GROUP BY comp.componentID ORDER BY failure DESC")
+=======
+    @Query("SELECT  comp.componentID,comp.cmpySerialNo,comp.failureProbability as failure,comp.description,comp.mfgPartNo FROM Component  comp GROUP BY  comp.componentID ORDER BY failure DESC")
+>>>>>>> eeabe1f08c6bd4071253300e31899aab32860218
     public List<Object> getFailureProbability();
 	
 
